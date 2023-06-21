@@ -1,6 +1,10 @@
 package com.example.forumbiznes;
 
 import java.io.*;
+
+import com.example.forumbiznes.Dao.UserDao;
+import com.example.forumbiznes.Model.Topic;
+import com.example.forumbiznes.Model.User;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -10,6 +14,15 @@ public class HelloServlet extends HttpServlet {
 
     public void init() {
         message = "Hello World!";
+
+        UserDao dao = new UserDao();
+        String login = "BURAK",
+                password = "BURAK",
+        email = "BURAK@BURAK.BURAK";
+
+        if(!dao.isLoginOccupied(login)){
+            dao.save(new User(login, password, email, 2));
+        }
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
