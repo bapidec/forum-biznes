@@ -28,7 +28,8 @@ public class User extends AbstractModel{
     private String password;
     @Column(name = "email")
     private String email;
-    @ManyToMany(mappedBy="followers")
+    @ManyToMany
+    @JoinTable(name="users_topics", joinColumns=@JoinColumn(name="topic_id"), inverseJoinColumns=@JoinColumn(name="user_id"))
     private List<Topic> followedTopics = new LinkedList<>();
     @OneToMany(mappedBy="user")
     private List<Post> posts = new LinkedList<>();
