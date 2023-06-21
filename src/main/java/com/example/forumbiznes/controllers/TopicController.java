@@ -1,6 +1,6 @@
 package com.example.forumbiznes.controllers;
 
-import com.example.forumbiznes.services.TopicService;
+import com.example.forumbiznes.services.TopicServiceImpl;
 import jakarta.ejb.EJB;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
@@ -9,5 +9,5 @@ import jakarta.inject.Named;
 @ViewScoped
 public class TopicController {
     @EJB
-    TopicService topicService;
+    TopicServiceImpl topicService;
 }

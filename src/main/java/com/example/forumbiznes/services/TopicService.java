@@ -1,7 +1,7 @@
 package com.example.forumbiznes.services;
 
-import jakarta.ejb.Stateless;
+public interface TopicService {
 
-@Stateless
-public class TopicService {
+    List<Topic>
+
 }
