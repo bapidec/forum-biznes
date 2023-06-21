@@ -2,6 +2,9 @@ package com.example.forumbiznes.Model;
 
 import jakarta.persistence.*;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @Entity
 @Table(name="Posts")
 public class Post extends AbstractModel{
@@ -18,6 +21,9 @@ public class Post extends AbstractModel{
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Topics")
     private Topic topic;
+
+    @OneToMany(mappedBy="post")
+    private List<Report> reports = new LinkedList<>();
 
     public Post(){
 

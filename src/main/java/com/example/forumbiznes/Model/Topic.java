@@ -9,6 +9,7 @@ import java.util.List;
 @Table(name="Topics")
 public class Topic extends AbstractModel{
     @ManyToMany
+    @JoinTable(name="user_topic")
     private List<User> followers = new LinkedList<>();
     @Column(name = "title")
     private String title;

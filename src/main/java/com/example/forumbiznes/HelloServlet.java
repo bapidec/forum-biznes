@@ -20,22 +20,22 @@ public class HelloServlet extends HttpServlet {
     public void init() {
         message = "Hello World!";
 
-        String login = "BURAK",
-                password = "BURAK",
-        email = "BURAK@BURAK.BURAK";
-
-        if(!dao.isLoginOccupied(login)){
-            dao.save(new User(login, password, email, 2));
-        }
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
+        String login = "BURAK123",
+                password = "BURAK123",
+                email = "BURAK@BURAK.BURAK123";
 
+        User user = new User(login, password, email, 2);
+        if(!dao.isLoginOccupied(login)){
+            dao.save(user);
+        }
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
+        out.println("<h1>" + message +" " + dao.findUserByLoginAndPassword(user.getLogin(), user.getPassword()).getId() + "</h1>");
         out.println("</body></html>");
     }
 
