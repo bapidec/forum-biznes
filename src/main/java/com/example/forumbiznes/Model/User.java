@@ -32,7 +32,7 @@ public class User extends AbstractModel{
     private List<Topic> followedTopics = new LinkedList<>();
     @OneToMany(mappedBy="user")
     private List<Post> posts = new LinkedList<>();
-    @OneToMany(mappedBy="comment")
+    @OneToMany(mappedBy="user")
     private List<Comment> comments = new LinkedList<>();
     @Column(name = "accessLevel")
     private int accessLevel;

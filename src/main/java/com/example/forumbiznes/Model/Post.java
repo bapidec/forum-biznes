@@ -15,14 +15,19 @@ public class Post extends AbstractModel{
     @JoinColumn(name = "Users")
     private User user;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Topics")
+    private Topic topic;
+
     public Post(){
 
     }
 
-    public Post(String title, String content, User user) {
+    public Post(String title, String content, User user, Topic topic) {
         this.title = title;
         this.content = content;
         this.user = user;
+        this.topic = topic;
     }
 
     public String getTitle() {
