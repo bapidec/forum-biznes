@@ -8,11 +8,12 @@ import jakarta.ejb.EJB;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Named
 @ViewScoped
-public class TopicController {
+public class TopicController implements Serializable {
     @EJB
     private TopicServiceImpl topicService;
     private List<Topic> topics;
