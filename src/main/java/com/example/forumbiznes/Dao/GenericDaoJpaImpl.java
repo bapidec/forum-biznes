@@ -1,8 +1,8 @@
 package com.example.forumbiznes.Dao;
 
-import com.example.forumbiznes.utils.JpaFactory;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -12,47 +12,34 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
+
 public class GenericDaoJpaImpl<T, K> implements GenericDao<T, K> {
 
     private final Class<T> type;
+    @PersistenceContext(unitName = "PU")
+    protected EntityManager em;
 
-    public GenericDaoJpaImpl() {
-        Type t = getClass().getGenericSuperclass();
-        ParameterizedType pt = (ParameterizedType) t;
-        type = (Class) pt.getActualTypeArguments()[0];
+    public GenericDaoJpaImpl(Class<T> type) {
+        this.type = type;
     }
 
     @Override
     public void save(T t) {
-        EntityManager em = getEntityManager();
-        em.getTransaction().begin();
         em.persist(t);
-        em.getTransaction().commit();
-        em.close();
     }
 
     @Override
     public void delete(T t) {
-        EntityManager em = getEntityManager();
-        em.getTransaction().begin();
-        t = em.merge(t);
         em.remove(t);
-        em.getTransaction().commit();
-        em.close();
     }
 
     @Override
     public void update(T t) {
-        EntityManager em = getEntityManager();
-        em.getTransaction().begin();
         em.merge(t);
-        em.getTransaction().commit();
-        em.close();
     }
 
     @Override
     public Optional<T> findById(K id) {
-        EntityManager em = getEntityManager();
         T dto = em.find(type, id);
         em.close();
         return Optional.ofNullable(dto);
@@ -60,16 +47,11 @@ public class GenericDaoJpaImpl<T, K> implements GenericDao<T, K> {
 
     @Override
     public List<T> findAll() {
-        EntityManager em = getEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<T> cq = cb.createQuery(type);
         Root<T> rootEntry = cq.from(type);
         CriteriaQuery<T> all = cq.select(rootEntry);
         TypedQuery<T> allQuery = em.createQuery(all);
         return allQuery.getResultList();
-    }
-
-    protected EntityManager getEntityManager() {
-        return JpaFactory.getEntityManager();
     }
 }

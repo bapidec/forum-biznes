@@ -6,11 +6,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 
 import java.util.List;
+@Stateless
 public class UserDao extends GenericDaoJpaImpl<User, Long>{
+    public UserDao() {
+        super(User.class);
+    }
+
     public boolean isLoginOccupied(String login) {
         try{
-            EntityManager em = getEntityManager();
-            User user = em.createNamedQuery("isLoginOccupied", User.class)
+            em.createNamedQuery("isLoginOccupied", User.class)
                     .setParameter("login", login)
                     .getSingleResult();
             em.close();
@@ -22,7 +26,6 @@ public class UserDao extends GenericDaoJpaImpl<User, Long>{
 
     public User findUserByLoginAndPassword(String login, String password) {
         try{
-            EntityManager em = getEntityManager();
             User user = em.createNamedQuery("findUserByLoginAndPassword", User.class)
                     .setParameter("login", login)
                     .setParameter("password", password)
