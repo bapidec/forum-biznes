@@ -5,6 +5,8 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 
+import java.util.Optional;
+
 @Stateless
 public class UserDao extends GenericDaoJpaImpl<User, Long>{
     public UserDao() {
@@ -13,7 +15,7 @@ public class UserDao extends GenericDaoJpaImpl<User, Long>{
 
     public boolean isLoginOccupied(String login) {
         try{
-            em.createNamedQuery("isLoginOccupied", User.class)
+            em.createNamedQuery("findUserByLogin", User.class)
                     .setParameter("login", login)
                     .getSingleResult();
             return true;
@@ -32,6 +34,16 @@ public class UserDao extends GenericDaoJpaImpl<User, Long>{
         }catch(NoResultException e){
             return null;
         }
+    }
 
+    public Optional<User> findUserByLogin(String login) {
+        try{
+            User user = em.createNamedQuery("findUserByLogin", User.class)
+                    .setParameter("login", login)
+                    .getSingleResult();
+            return Optional.of(user);
+        }catch(NoResultException e){
+            return Optional.empty();
+        }
     }
 }

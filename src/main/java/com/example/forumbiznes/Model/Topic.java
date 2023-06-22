@@ -17,14 +17,12 @@ import java.util.Map;
 @Entity
 @Table(name="Topics")
 public class Topic extends AbstractModel{
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name="users_topics", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="topic_id"))
     private List<User> followers = new LinkedList<>();
     @Column(name = "title")
-    @ManagedProperty(value = "#{title}")
     private String title;
-    @OneToMany(mappedBy="topic")
-    @ManagedProperty(value = "#{posts}")
+    @OneToMany(mappedBy="topic", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Post> posts = new LinkedList<>();
 
     public Topic(String title) {
@@ -33,6 +31,7 @@ public class Topic extends AbstractModel{
 
     public Topic() {}
 
+    }
     @Override
     public String toString() {
         return title;

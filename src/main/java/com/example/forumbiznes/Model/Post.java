@@ -10,8 +10,6 @@ import java.util.List;
 
 @Entity
 @Table(name="Posts")
-@Named("postBean")
-@RequestScoped
 public class Post extends AbstractModel{
     @Column(name="title")
     private String title;
@@ -27,7 +25,7 @@ public class Post extends AbstractModel{
     @JoinColumn(name = "Topics")
     private Topic topic;
 
-    @OneToMany(mappedBy="post")
+    @OneToMany(mappedBy="post", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Report> reports = new LinkedList<>();
 
     @OneToMany(mappedBy="post", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -40,7 +38,7 @@ public class Post extends AbstractModel{
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-  
+
     public Post(){
 
     }
@@ -88,6 +86,5 @@ public class Post extends AbstractModel{
     public String toString() {
         return title;
     }
-
 
 }

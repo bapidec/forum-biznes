@@ -26,6 +26,50 @@
         </servlet-mapping>
 
         <welcome-file-list>
-                <welcome-file>index.xhtml</welcome-file>
+                <welcome-file>user/index.xhtml</welcome-file>
         </welcome-file-list>
+
+        <security-constraint>
+                <web-resource-collection>
+                        <web-resource-name>Tematy</web-resource-name>
+                        <url-pattern>/user/*</url-pattern>
+                </web-resource-collection>
+                <auth-constraint>
+                        <role-name>0</role-name>
+                        <role-name>1</role-name>
+                        <role-name>2</role-name>
+                </auth-constraint>
+        </security-constraint>
+
+        <security-constraint>
+                <web-resource-collection>
+                        <web-resource-name>Tematy</web-resource-name>
+                        <url-pattern>/mod/*</url-pattern>
+                </web-resource-collection>
+                <auth-constraint>
+                        <role-name>1</role-name>
+                        <role-name>2</role-name>
+                </auth-constraint>
+        </security-constraint>
+
+        <security-constraint>
+                <web-resource-collection>
+                        <web-resource-name>Tematy</web-resource-name>
+                        <url-pattern>/admin/*</url-pattern>
+                </web-resource-collection>
+                <auth-constraint>
+                        <role-name>2</role-name>
+                </auth-constraint>
+        </security-constraint>
+
+
+        <security-role> <!-- 0 - user           1 - mod                 2 - admin -->
+                <role-name>0</role-name>
+        </security-role>
+        <security-role>
+                <role-name>1</role-name>
+        </security-role>
+        <security-role>
+                <role-name>2</role-name>
+        </security-role>
 </web-app>
