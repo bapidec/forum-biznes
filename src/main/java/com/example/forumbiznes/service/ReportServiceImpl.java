@@ -10,8 +10,10 @@ import jakarta.ejb.Stateless;
 import java.util.List;
 @Stateless
 public class ReportServiceImpl implements ReportService{
+
     @EJB
     ReportDao dao;
+
     @Override
     public List<Report> findAll() {
         return dao.findAll();
@@ -25,5 +27,9 @@ public class ReportServiceImpl implements ReportService{
     @Override
     public Post showReportedPost(Report r) {
         return dao.showReportedPost(r).orElse(null);
+      
+    public Report save(Report editedReport) {
+        dao.save(editedReport);
+        return editedReport;
     }
 }

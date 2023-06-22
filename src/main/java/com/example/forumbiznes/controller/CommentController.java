@@ -41,20 +41,17 @@ public class CommentController {
 
     public void onSaveComment(Post p) {
 
-        Comment saved;
 
         // jeśli nowy, nie edytowany
         if(this.editedComment.getId() == null) {
             this.comments.add(this.editedComment);
-            saved = commentService.save(this.editedComment);
+            this.postController.addComment(p, this.editedComment);
         }
         else {
-            saved = commentService.update(this.editedComment);
-            // aktualizacja this.topics z bazą
+            Comment saved = commentService.update(this.editedComment);
+            // aktualizacja this.comments z bazą
             this.comments.replaceAll(c -> c != editedComment ? c : saved);
         }
-        this.postController.addComment(p, saved);
-
         this.editedComment = null;
     }
 

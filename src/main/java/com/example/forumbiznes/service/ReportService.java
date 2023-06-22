@@ -12,4 +12,5 @@ public interface ReportService {
 
     void delete(Report r);
     Post showReportedPost(Report r);
+    Report save(Report editedReport);
 }

@@ -14,10 +14,15 @@ import java.io.Serializable;
 import java.util.List;
 @Named
 @SessionScoped
-public class ReportController implements Serializable {
+public class ReportController {
     @EJB
     private ReportService reportService;
+    @Inject
+    PostController postController;
+
     private List<Report> reports;
+    private Report editedReport;
+
     @PostConstruct
     private void init() {
         this.reports = reportService.findAll();
@@ -37,5 +42,22 @@ public class ReportController implements Serializable {
 
     public Post showReportedPost(Report r){
         return reportService.showReportedPost(r);
+      
+    public void onAddReport() {
+        this.editedReport = new Report();
+    }
+
+    public void onSaveReport(Post p, User u) {
+        this.reports.add(this.editedReport);
+        this.postController.addReport(p, u, this.editedReport);
+        this.editedReport = null;
+    }
+
+    public void onCancelReport() {
+        this.editedReport = null;
+    }
+
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
     }
 }

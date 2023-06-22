@@ -42,7 +42,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public void addFollower(Topic t, User u) {
-
+        dao.addFollower(t, u);
     }
 
     @Override
