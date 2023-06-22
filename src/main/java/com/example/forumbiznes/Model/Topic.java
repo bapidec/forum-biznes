@@ -16,8 +16,6 @@ import java.util.Map;
 
 @Entity
 @Table(name="Topics")
-@Named("topicBean")
-@RequestScoped
 public class Topic extends AbstractModel{
     @ManyToMany
     @JoinTable(name="users_topics", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="topic_id"))
@@ -33,10 +31,7 @@ public class Topic extends AbstractModel{
         this.title = title;
     }
 
-    public Topic(){
-        this.title = "aaaaaaaaaaaa";
-    }
-
+    public Topic() {}
 
     @Override
     public String toString() {
