@@ -40,27 +40,29 @@ public class TopicController implements Serializable {
 
     public void onSaveTopic() {
 
-        // jeśli add, nie edit
+        Topic saved;
+
+        // jeśli nowy, nie edytowany
         if(this.editedTopic.getId() == null) {
             this.topics.add(this.editedTopic);
+            saved = topicService.save(this.editedTopic);
         }
-
-        try {
-            Topic saved = topicService.save(this.editedTopic);
-            // aktualizacja z bazą
+        else {
+            saved = topicService.update(this.editedTopic);
+            // aktualizacja this.topics z bazą
             this.topics.replaceAll(t -> t != editedTopic ? t : saved);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
 
         this.editedTopic = null;
 
-        PrimeFaces.current().ajax().update(":mainForm:topicTable");
-
     }
 
     public void onRemoveTopic(Topic t) {
-        this.topicService.delete(t);
+        try {
+            this.topicService.delete(t);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         topics.remove(t);
     }
 
