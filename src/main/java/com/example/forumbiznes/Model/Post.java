@@ -30,11 +30,17 @@ public class Post extends AbstractModel{
     @OneToMany(mappedBy="post")
     private List<Report> reports = new LinkedList<>();
 
-
     @OneToMany(mappedBy="post", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @ManagedProperty(value = "#{comments}")
     private List<Comment> comments = new LinkedList<>();
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+  
     public Post(){
 
     }
@@ -70,9 +76,18 @@ public class Post extends AbstractModel{
         this.user = user;
     }
 
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
+
     @Override
     public String toString() {
         return title;
     }
+
 
 }
