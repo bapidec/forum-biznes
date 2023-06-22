@@ -35,7 +35,10 @@
                 Tematy
             </f:facet>
             <p:column headerText="Tytuł">
-                #{topic.title}
+
+                <a href="topic.xhtml?id=#{topic.id}">
+                    <h:outputText value="#{topic.title}"/>
+                </a>
             </p:column>
             <p:column headerText="Usuń" width="80" style="text-align: center;">
                 <p:commandButton icon="pi pi-trash" title="Usuń" action="#{topicController.onRemoveTopic(topic)}"

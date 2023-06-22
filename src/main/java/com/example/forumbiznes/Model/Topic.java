@@ -1,19 +1,32 @@
 package com.example.forumbiznes.Model;
 
+import com.example.forumbiznes.Dao.TopicDao;
+import jakarta.annotation.ManagedBean;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.annotation.ManagedProperty;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Named;
 import jakarta.persistence.*;
 
+import javax.xml.namespace.QName;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name="Topics")
+@Named("topicBean")
+@RequestScoped
 public class Topic extends AbstractModel{
     @ManyToMany
     @JoinTable(name="users_topics", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="topic_id"))
     private List<User> followers = new LinkedList<>();
     @Column(name = "title")
+    @ManagedProperty(value = "#{title}")
     private String title;
     @OneToMany(mappedBy="topic")
+    @ManagedProperty(value = "#{posts}")
     private List<Post> posts = new LinkedList<>();
 
     public Topic(String title) {
@@ -21,8 +34,10 @@ public class Topic extends AbstractModel{
     }
 
     public Topic(){
-
+        this.title = "aaaaaaaaaaaa";
     }
+
+
     @Override
     public String toString() {
         return title;
