@@ -48,7 +48,7 @@ public class AbstractModel {
     
     @PreUpdate
     public void setUpUpdateDate() {
-    	creatingDate = new Date();
+        modifyDate = new Date();
     }
     
     @PrePersist

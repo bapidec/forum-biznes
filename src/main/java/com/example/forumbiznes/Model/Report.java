@@ -2,6 +2,12 @@ package com.example.forumbiznes.Model;
 
 import jakarta.persistence.*;
 
+@NamedQuery(
+        name="showReportedPost",
+        query="select p "
+                + "from com.example.forumbiznes.Model.Post p "
+                + "where p.reports = :report"
+)
 @Entity
 @Table(name="Reports")
 public class Report extends AbstractModel{
