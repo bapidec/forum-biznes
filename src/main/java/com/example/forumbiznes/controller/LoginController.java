@@ -3,7 +3,9 @@ package com.example.forumbiznes.controller;
 import com.example.forumbiznes.Model.User;
 import com.example.forumbiznes.bean.UserBean;
 import com.example.forumbiznes.service.UserService;
+import jakarta.annotation.ManagedBean;
 import jakarta.ejb.EJB;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.annotation.ManagedProperty;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.ExternalContext;
@@ -20,27 +22,20 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.Serializable;
-@Named
 @ViewScoped
+@Named
 public class LoginController implements Serializable {
 
     @Inject
     private UserBean userBean;
-    @EJB
-    private UserService userService;
-
     @Inject
     private SecurityContext securityContext;
-
     @Inject
     private ExternalContext externalContext;
-
     @Inject
     private FacesContext facesContext;
-
     @Inject @ManagedProperty("#{param.new}")
     private boolean isNew;
-
     private String login;
     private String password;
 
@@ -101,12 +96,17 @@ public class LoginController implements Serializable {
     }
 
     private AuthenticationStatus continueAuthentication() {
-        return securityContext.authenticate(
-                (HttpServletRequest) externalContext.getRequest(),
-                (HttpServletResponse) externalContext.getResponse(),
-                AuthenticationParameters.withParams()
-                        .newAuthentication(isNew).credential(
-                                new UsernamePasswordCredential(login, password))
-        );
+        if(login!=null && password!=null){
+            if(login.length()>4 && password.length()>4){
+                return securityContext.authenticate(
+                        (HttpServletRequest) externalContext.getRequest(),
+                        (HttpServletResponse) externalContext.getResponse(),
+                        AuthenticationParameters.withParams()
+                                .newAuthentication(isNew).credential(
+                                        new UsernamePasswordCredential(login, password))
+                );
+            }
+        }
+        return AuthenticationStatus.SEND_FAILURE;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.forumbiznes.controller;
 
+import com.example.forumbiznes.Configuration;
 import com.example.forumbiznes.Dao.UserDao;
 import com.example.forumbiznes.Model.User;
 import com.example.forumbiznes.bean.UserBean;
@@ -24,21 +25,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Optional;
 
-@Named
 @ViewScoped
+@Named
 public class RegistrationController implements Serializable {
 
     @EJB
-    private Pbkdf2PasswordHash pbkdf;
-    @EJB
-    UserDao dao;
-    @Inject
-    private ExternalContext externalContext;
-
+    Configuration configuration;
     private String login;
     private String password;
-
     private String email;
 
     public String getLogin() {
@@ -65,17 +61,16 @@ public class RegistrationController implements Serializable {
         this.password = password;
     }
 
-    public String onRegister(){
-        return "register";
-    }
-
     public void registration(){
-        User u = new User();
-        u.setLogin("test");
-        u.setPassword(pbkdf.generate("test".toCharArray()));
-        u.setEmail("test@test.pl");
-        u.setAccessLevel(0);
-        dao.save(u);
-//        externalContext.redirect(externalContext.getRequestContextPath()+"login.xhtml");
+        if(login!=null && password!=null && email!=null){
+            if(login.length()>4 && password.length()>4 && email.length()>4){
+                User user = new User(login, password, email, 0);
+                configuration.createAccount(user);
+            }
+        } else{
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Niepoprawne dane", "Niepoprawne dane"));
+        }
     }
 }

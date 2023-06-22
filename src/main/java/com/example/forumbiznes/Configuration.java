@@ -48,6 +48,9 @@ import java.util.Map;
 @Startup
 public class Configuration {
 
+        @EJB
+        private UserDao dao;
+
         @Inject
         private Pbkdf2PasswordHash pbkdf;
 
@@ -59,5 +62,10 @@ public class Configuration {
                 map.put("Pbkdf2PasswordHash.SaltSizeBytes","64");
                 pbkdf.initialize(map);
        }
+
+        public void createAccount(User user) {
+                user.setPassword(pbkdf.generate(user.getPassword().toCharArray()));
+                dao.save(user);
+        }
 }
 

@@ -14,12 +14,12 @@
                         <p:growl id="growl" sticky="true"  life="3000" />
                         <h:panelGrid columns="2" cellpadding="5">
                             <p:outputLabel for="login" value="Login" />
-                            <p:inputText id="login" value="#{loginController.login}" required="true"  />
+                            <p:inputText id="login" value="#{loginController.login}" />
                             <p:outputLabel for="password" value="Hasło" />
-                            <p:password id="password" value="#{loginController.password}" required="true"  />
+                            <p:password id="password" value="#{loginController.password}" />
                         </h:panelGrid>
                         <p:commandButton value="Zaloguj" ajax="false" update="growl" action="#{loginController.onLogin}" />
-                        <!--<p:commandButton value="Rejestracja" ajax="false" update="growl" action="#{registerController.onRegister}" />-->
+                        <p:commandButton value="Rejestracja"  action="registration" />
                     </p:panel>
                 </h:form>
             </ui:define>

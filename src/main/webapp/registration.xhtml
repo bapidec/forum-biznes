@@ -13,15 +13,16 @@
                     <p:panel header="Rejestracja">
                         <p:growl id="growl" sticky="true"  life="3000" />
                         <h:panelGrid columns="2" cellpadding="5">
-                            <p:outputLabel for="login" value="E-mail" />
-                            <p:inputText id="login" value="#{registrationController.email}" required="true"  />
                             <p:outputLabel for="login" value="Login" />
-                            <p:inputText id="email" value="#{registrationController.login}" required="true"  />
+                            <p:inputText id="login" value="#{registrationController.login}"/>
+                            <p:outputLabel for="email" value="E-mail" />
+                            <p:inputText id="email" value="#{registrationController.email}"/>
                             <p:outputLabel for="password" value="Hasło" />
-                            <p:password id="password" value="#{registrationController.password}" required="true"  />
+                            <p:password id="password" value="#{registrationController.password}"/>
 
                         </h:panelGrid>
                         <p:commandButton value="Zarejestruj" ajax="false" update="growl" action="#{registrationController.registration}" />
+                        <p:commandButton value="Logowanie"  action="login" />
                     </p:panel>
                 </h:form>
             </ui:define>
