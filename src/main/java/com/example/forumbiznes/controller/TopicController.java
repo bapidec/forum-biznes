@@ -3,7 +3,6 @@ package com.example.forumbiznes.controller;
 import com.example.forumbiznes.Model.Topic;
 import com.example.forumbiznes.Model.User;
 import com.example.forumbiznes.service.TopicService;
-import com.example.forumbiznes.service.TopicServiceImpl;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.ApplicationScoped;

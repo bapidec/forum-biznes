@@ -7,9 +7,12 @@
     <title>Example1</title>
 </h:head>
 <h:body>
-    <h:form id="mainForm">
+    <h:form  id="mainForm">>
+        <p:growl id="growl" showDetail="true" showSummary="false" keepAlive="" />
 
-        <p><h:commandButton value="Dodaj temat" action="welcome"/></p>
+
+        <p:commandButton icon="pi pi-plus" title="Dodaj konto" action="#{topicController.onAddTopic()}"
+                         process="@this" update=":topicDlg" oncomplete="PF('topicDlg').show()" />
 
         <p:dataTable id="topicTable" value="#{topicController.topics}" var="topic" rowKey="#{topic.uid}"
                      emptyMessage="Brak tematów, dodaj nowy temat" paginator="true" paginatorAlwaysVisible="false"
@@ -32,5 +35,28 @@
             </p:column>
         </p:dataTable>
     </h:form>
+
+    <p:dialog id="topicDlg" widgetVar="topicDlg" dynamic="true" modal="true" header="Tworzenie tematu" showEffect="fade"
+              hideEffect="fade">
+        <h:form id="topicDlgForm">
+
+            <h:panelGrid columns="2">
+                <p:outputLabel value="Tytuł" for="@next" />
+                <p:inputText id="title" value="#{topicController.editedTopic.title}" required="true" />
+
+            </h:panelGrid>
+
+            <p:commandButton value="Zapisz" action="#{topicController.onSaveTopic()}" process="@form"
+                             update=":mainForm" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('topicDlg').hide()" />
+            <p:commandButton value="Anuluj" action="#{topicController.onCancelTopic()}" process="@this"
+                             update=":mainForm:growl" oncomplete="PF('topicDlg').hide()">
+                <p:resetInput target=":topicDlgForm" />
+            </p:commandButton>
+        </h:form>
+    </p:dialog>
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" header="Potwierdzenie">
+        <p:commandButton value="Tak" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+        <p:commandButton value="Nie" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+    </p:confirmDialog>
 </h:body>
 </html>
