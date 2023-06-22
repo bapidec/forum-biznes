@@ -4,17 +4,17 @@ import com.example.forumbiznes.Model.Post;
 import com.example.forumbiznes.Model.Report;
 import com.example.forumbiznes.Model.User;
 import com.example.forumbiznes.service.ReportService;
-import com.example.forumbiznes.service.UserService;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.util.List;
 @Named
 @SessionScoped
-public class ReportController {
+public class ReportController implements Serializable {
     @EJB
     private ReportService reportService;
     @Inject
@@ -40,9 +40,10 @@ public class ReportController {
         reports.remove(r);
     }
 
-    public Post showReportedPost(Report r){
+    public Post showReportedPost(Report r) {
         return reportService.showReportedPost(r);
-      
+    }
+
     public void onAddReport() {
         this.editedReport = new Report();
     }
