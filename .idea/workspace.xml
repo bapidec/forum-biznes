@@ -10,13 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c640247-78f3-4936-acd2-0d19ecef8829" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/CommentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/service/CommentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/service/CommentServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/Dao/PostDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/Dao/PostDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/Dao/TopicDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/Dao/TopicDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/Model/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/Model/Post.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/service/PostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/service/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/service/PostServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/TopicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/TopicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/service/TopicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/service/TopicService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/service/TopicServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/service/TopicServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +29,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -49,27 +53,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/bapid/JWorkspace/forum-biznes/src/test/resources/META-INF",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bapid/JWorkspace/forum-biznes/src/test/resources/META-INF&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "h2"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.forumbiznes.controller" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\bapid\JWorkspace\forum-biznes\src\test\resources\META-INF" />
     </key>
@@ -182,7 +189,7 @@
       <module name="forum-biznes" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.forumbiznes.controller.*" />
+          <option name="PATTERN" value="com.example.forumbiznes.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
