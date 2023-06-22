@@ -8,6 +8,7 @@ import com.example.forumbiznes.service.UserService;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.annotation.ManagedProperty;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -35,6 +36,7 @@ public class UserBean implements Serializable {
     public void init() {
         user = dao.findUserByLogin(getLogin()).orElse(null);
     }
+
     public boolean isLogged() {
         return getLogin() != null;
     }
@@ -46,7 +48,7 @@ public class UserBean implements Serializable {
 
         Principal principal = securityContext.getCallerPrincipal();
         if (principal != null) {
-            user = userService.findByLogin(principal.getName());
+            this.user = userService.findByLogin(principal.getName());
         }
 
         return user != null ? user.getLogin() : null;
