@@ -55,7 +55,7 @@ public class LoginController implements Serializable {
         this.password = password;
     }
 
-    public void onLogin() throws IOException {
+    public void onLogin() throws Exception {
         switch (continueAuthentication()) {
             case SEND_CONTINUE:
                 facesContext.responseComplete();
@@ -69,19 +69,18 @@ public class LoginController implements Serializable {
                 FacesContext context = FacesContext.getCurrentInstance();
                 ExternalContext externalContext = context.getExternalContext();
                 String accessDir;
-                switch(userBean.getAccessLevel()){
-                    case 0:
-                        accessDir="user/";
+                switch(userBean.getUser().getAccessLevel()){
+                    case 2:
+                        accessDir="admin/";
                         break;
                     case 1:
                         accessDir="mod/";
                         break;
-                    case 2:
-                        accessDir="admin/";
-                        break;
-                    default:
+                    case 0:
                         accessDir="user/";
                         break;
+                    default:
+                        throw new Exception("Nie ma takiego numeru");
                 }
                 externalContext.redirect(externalContext.getRequestContextPath()+accessDir+"index.xhtml");
                 break;

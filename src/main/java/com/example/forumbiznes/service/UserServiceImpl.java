@@ -5,6 +5,8 @@ import com.example.forumbiznes.Model.User;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 
+import java.util.List;
+
 @Stateless
 public class UserServiceImpl implements UserService {
 
@@ -21,5 +23,19 @@ public class UserServiceImpl implements UserService {
         User u = userDao.findUserByLogin(login).orElse(null);
         return u != null ? password.equals(u.getPassword()) : false;
 
+    }
+    @Override
+    public List<User> findAll() {
+        return userDao.findAll();
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userDao.update(user);
+    }
+
+    @Override
+    public void delete(User u) {
+        userDao.delete(u);
     }
 }

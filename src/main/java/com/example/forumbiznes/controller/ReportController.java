@@ -2,16 +2,18 @@ package com.example.forumbiznes.controller;
 
 import com.example.forumbiznes.Model.Post;
 import com.example.forumbiznes.Model.Report;
-import com.example.forumbiznes.Model.Topic;
 import com.example.forumbiznes.Model.User;
-import com.example.forumbiznes.service.PostService;
 import com.example.forumbiznes.service.ReportService;
+import com.example.forumbiznes.service.UserService;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
-import jakarta.inject.Inject;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Named;
 
+import java.io.Serializable;
 import java.util.List;
-
+@Named
+@SessionScoped
 public class ReportController {
     @EJB
     private ReportService reportService;
@@ -25,11 +27,22 @@ public class ReportController {
     private void init() {
         this.reports = reportService.findAll();
     }
-
     public List<Report> getReports() {
         return this.reports;
     }
 
+    public void onRemoveReport(Report r) {
+        try {
+            this.reportService.delete(r);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        reports.remove(r);
+    }
+
+    public Post showReportedPost(Report r){
+        return reportService.showReportedPost(r);
+      
     public void onAddReport() {
         this.editedReport = new Report();
     }
@@ -38,11 +51,6 @@ public class ReportController {
         this.reports.add(this.editedReport);
         this.postController.addReport(p, u, this.editedReport);
         this.editedReport = null;
-    }
-
-    public void onRemoveReport(Report r) {
-        this.reportService.delete(r);
-        reports.remove(r);
     }
 
     public void onCancelReport() {

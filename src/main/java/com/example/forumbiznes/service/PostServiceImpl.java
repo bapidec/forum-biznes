@@ -6,9 +6,10 @@ import com.example.forumbiznes.Model.Post;
 import com.example.forumbiznes.Model.Report;
 import com.example.forumbiznes.Model.User;
 import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
 
 import java.util.List;
-
+@Stateless
 public class PostServiceImpl implements PostService{
 
     @EJB
