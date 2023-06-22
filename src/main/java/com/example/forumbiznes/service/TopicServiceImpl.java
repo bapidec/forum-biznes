@@ -1,29 +1,35 @@
 package com.example.forumbiznes.service;
 
+import com.example.forumbiznes.Dao.TopicDao;
 import com.example.forumbiznes.Model.Topic;
 import com.example.forumbiznes.Model.User;
+import jakarta.ejb.EJB;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.Stateless;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Stateful
+@Stateless
 public class TopicServiceImpl implements TopicService {
-    List<Topic> topics = new ArrayList<>();
+
+    @EJB
+    TopicDao dao;
+
+
     @Override
     public List<Topic> findAll() {
-        return topics;
+        return dao.findAll();
     }
 
     @Override
     public void delete(Topic t) {
-        topics.remove(t);
+        dao.delete(t);
     }
 
     @Override
     public Topic save(Topic editedTopic) {
-        topics.add(editedTopic);
+        dao.save(editedTopic);
         return editedTopic;
     }
 

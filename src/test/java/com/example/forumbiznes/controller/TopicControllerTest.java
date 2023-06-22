@@ -27,8 +27,8 @@ public class TopicControllerTest {
     public void setUp() {
         topicService = new TopicServiceImpl();
         topicController = new TopicController();
-        topicService.save(new Topic(null, "Topic 1", null));
-        topicService.save(new Topic(null, "Topic 2", null));
+        topicService.save(new Topic("Topic 1"));
+        topicService.save(new Topic("Topic 2"));
     }
 
     @Test
@@ -40,7 +40,7 @@ public class TopicControllerTest {
     @Test
     public void testSaveAndDeleteTopic() {
 
-        Topic t = new Topic(null, "Topic 3", null);
+        Topic t = new Topic("Topic 3");
 
         topicService.save(t);
         List<Topic> topics = topicService.findAll();

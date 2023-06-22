@@ -22,7 +22,7 @@ public class TopicController implements Serializable {
 
     @PostConstruct
     private void init() {
-        topicService.save(new Topic(null, "dupa", null));
+        topicService.save(new Topic("dupa"));
         this.topics = topicService.findAll();
     }
 
