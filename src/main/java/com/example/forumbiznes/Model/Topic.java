@@ -30,8 +30,6 @@ public class Topic extends AbstractModel{
     }
 
     public Topic() {}
-
-    }
     @Override
     public String toString() {
         return title;

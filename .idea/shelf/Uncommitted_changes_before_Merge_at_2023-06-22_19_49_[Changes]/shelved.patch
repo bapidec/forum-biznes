@@ -1,0 +1,39 @@
+Index: src/main/webapp/index.xhtml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version='1.0' encoding='UTF-8' ?>\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\"\r\n      xmlns:f=\"http://java.sun.com/jsf/core\"\r\n      xmlns:h=\"http://java.sun.com/jsf/html\"\r\n      xmlns:p=\"http://primefaces.org/ui\"\r\n      xmlns:a=\"http://xmlns.jcp.org/jsf/core\"\r\n      xmlns:ui=\"http://xmlns.jcp.org/jsf/facelets\">\r\n\r\n<script type=\"text/javascript\">\r\n    function showDialog(data) {\r\n        if (data.status === 'success') {\r\n            PF('topicDlg').show();\r\n        }\r\n    }\r\n</script>\r\n\r\n\r\n<h:head>\r\n\r\n    <title>Forum Romanum</title>\r\n</h:head>\r\n<h:body>\r\n  \r\n  <ui:composition template=\"/templates/template.xhtml\">\r\n        <ui:define name=\"content\">\r\n    <h:form  id=\"mainForm\">>\r\n        <p:growl id=\"growl\" showDetail=\"true\" showSummary=\"false\" keepAlive=\"\" />\r\n\r\n\r\n        <p:commandButton icon=\"pi pi-plus\" title=\"Dodaj konto\" action=\"#{topicController.onAddTopic()}\"\r\n                         process=\"@this\" update=\":topicDlg\" oncomplete=\"PF('topicDlg').show()\" />\r\n\r\n        <p:dataTable id=\"topicTable\" value=\"#{topicController.topics}\" var=\"topic\" rowKey=\"#{topic.uid}\"\r\n                     emptyMessage=\"Brak tematów, dodaj nowy temat\" paginator=\"true\" paginatorAlwaysVisible=\"false\"\r\n                     paginatorPosition=\"bottom\"\r\n                     paginatorTemplate=\"{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}\"\r\n                     rows=\"10\" rowsPerPageTemplate=\"10\">\r\n            <f:facet name=\"header\">\r\n                Tematy\r\n            </f:facet>\r\n            <p:column headerText=\"Tytuł\">\r\n                <p:commandLink title=\"#{topic.title}\" action=\"#{topicController.goToTopicPage(topic)}\" value=\"#{topic.title}\" />\r\n            </p:column>\r\n            <p:column headerText=\"Usuń\" width=\"80\" style=\"text-align: center;\">\r\n                <p:commandButton icon=\"pi pi-trash\" title=\"Usuń\" action=\"#{topicController.onRemoveTopic(topic)}\"\r\n                                 process=\"@this\" update=\":mainForm:topicTable\">\r\n                </p:commandButton>\r\n            </p:column>\r\n            <p:column headerText=\"Edytuj\" width=\"80\" style=\"text-align: center;\">\r\n                <h:commandButton value=\"Edytuj\" action=\"#{topicController.onEditTopic(topic)}\">\r\n                    <a:ajax execute=\"@this\" render=\":topicDlg\" onevent=\"showDialog\" />\r\n                </h:commandButton>\r\n            </p:column>\r\n        </p:dataTable>\r\n    </h:form>\r\n\r\n    <p:dialog id=\"topicDlg\" widgetVar=\"topicDlg\" dynamic=\"true\" modal=\"true\" header=\"Tworzenie tematu\" showEffect=\"fade\"\r\n              hideEffect=\"fade\">\r\n        <h:form id=\"topicDlgForm\">\r\n\r\n            <h:panelGrid columns=\"2\">\r\n                <p:outputLabel value=\"Tytuł\" for=\"@next\" />\r\n                <p:inputText id=\"title\" value=\"#{topicController.editedTopic.title}\" required=\"true\"/>\r\n            </h:panelGrid>\r\n\r\n            <p:commandButton value=\"Zapisz\" action=\"#{topicController.onSaveTopic()}\" process=\"@form\"\r\n                             update=\":mainForm:topicTable\" oncomplete=\"if (args &amp;&amp; !args.validationFailed) PF('topicDlg').hide()\" />\r\n            <p:commandButton value=\"Anuluj\" action=\"#{topicController.onCancelTopic()}\" process=\"@this\"\r\n                             update=\":mainForm:growl\" oncomplete=\"PF('topicDlg').hide()\">\r\n                <p:resetInput target=\":topicDlgForm\" />\r\n            </p:commandButton>\r\n        </h:form>\r\n    </p:dialog>\r\n    <p:confirmDialog global=\"true\" showEffect=\"fade\" hideEffect=\"fade\" header=\"Potwierdzenie\">\r\n        <p:commandButton value=\"Tak\" type=\"button\" styleClass=\"ui-confirmdialog-yes\" icon=\"pi pi-check\" />\r\n        <p:commandButton value=\"Nie\" type=\"button\" styleClass=\"ui-confirmdialog-no\" icon=\"pi pi-times\" />\r\n    </p:confirmDialog>\r\n          </ui:define>\r\n    </ui:composition>\r\n</h:body>\r\n</html>
+===================================================================
+diff --git a/src/main/webapp/index.xhtml b/src/main/webapp/index.xhtml
+--- a/src/main/webapp/index.xhtml	
++++ b/src/main/webapp/index.xhtml	
+@@ -22,8 +22,8 @@
+ </h:head>
+ <h:body>
+   
+-  <ui:composition template="/templates/template.xhtml">
+-        <ui:define name="content">
++<!--  <ui:composition template="/templates/template.xhtml">-->
++<!--        <ui:define name="content">-->
+     <h:form  id="mainForm">>
+         <p:growl id="growl" showDetail="true" showSummary="false" keepAlive="" />
+ 
+@@ -49,7 +49,7 @@
+             </p:column>
+             <p:column headerText="Edytuj" width="80" style="text-align: center;">
+                 <h:commandButton value="Edytuj" action="#{topicController.onEditTopic(topic)}">
+-                    <a:ajax execute="@this" render=":topicDlg" onevent="showDialog" />
++                    <a:ajax execute="@this" render=":mainForm:topicDlg" onevent="showDialog" />
+                 </h:commandButton>
+             </p:column>
+         </p:dataTable>
+@@ -76,7 +76,7 @@
+         <p:commandButton value="Tak" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+         <p:commandButton value="Nie" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+     </p:confirmDialog>
+-          </ui:define>
+-    </ui:composition>
++<!--          </ui:define>-->
++<!--    </ui:composition>-->
+ </h:body>
+ </html>
+\ No newline at end of file
