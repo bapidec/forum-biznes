@@ -3,9 +3,10 @@ package com.example.forumbiznes.service;
 import com.example.forumbiznes.Dao.CommentDao;
 import com.example.forumbiznes.Model.Comment;
 import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
 
 import java.util.List;
-
+@Stateless
 public class CommentServiceImpl implements CommentService{
 
     @EJB

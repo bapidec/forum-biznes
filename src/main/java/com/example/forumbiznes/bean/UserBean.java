@@ -3,8 +3,10 @@ package com.example.forumbiznes.bean;
 
 import com.example.forumbiznes.Model.User;
 import com.example.forumbiznes.service.UserService;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.annotation.ManagedProperty;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.security.enterprise.SecurityContext;
@@ -21,8 +23,14 @@ public class UserBean implements Serializable {
 
     @Inject
     private SecurityContext securityContext;
-
+    @Inject @ManagedProperty("#{user}")
     private User user;
+
+    @PostConstruct
+    private void init(){
+        Principal principal = securityContext.getCallerPrincipal();
+        this.user = userService.findByLogin(principal.getName());
+    }
 
     public boolean isLogged() {
         return getLogin() != null;
@@ -35,7 +43,7 @@ public class UserBean implements Serializable {
 
         Principal principal = securityContext.getCallerPrincipal();
         if (principal != null) {
-            user = userService.findByLogin(principal.getName());
+            this.user = userService.findByLogin(principal.getName());
         }
 
         return user != null ? user.getLogin() : null;

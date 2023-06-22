@@ -91,6 +91,14 @@ public class PostController implements Serializable {
         return "post?id=" + p.getId() + "&faces-redirect=true";
     }
 
+    public Post getCurrentPost() {
+        return currentPost;
+    }
+
+    public void setCurrentPost(Post currentPost) {
+        this.currentPost = currentPost;
+    }
+
     public void addComment(Post p, Comment c) {
         this.postService.addComment(p, c);
     }

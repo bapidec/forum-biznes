@@ -4,19 +4,27 @@ import com.example.forumbiznes.Dao.CommentDao;
 import com.example.forumbiznes.Model.Comment;
 import com.example.forumbiznes.Model.Post;
 import com.example.forumbiznes.Model.Topic;
+import com.example.forumbiznes.bean.UserBean;
 import com.example.forumbiznes.service.CommentService;
 import com.example.forumbiznes.service.CommentServiceImpl;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
+import java.io.Serializable;
 import java.util.List;
-
-public class CommentController {
+@Named
+@SessionScoped
+public class CommentController implements Serializable {
     @EJB
     private CommentService commentService;
     @Inject
     PostController postController;
+
+    @Inject
+    UserBean userBean;
 
     private List<Comment> comments;
     private Comment editedComment;
@@ -33,6 +41,7 @@ public class CommentController {
 
     public void onAddComment() {
         this.editedComment = new Comment();
+        this.editedComment.setUser(userBean.getUser());
     }
 
     public void onEditComment(Comment c) {
@@ -44,16 +53,12 @@ public class CommentController {
         Comment saved;
 
         // jeśli nowy, nie edytowany
-        if(this.editedComment.getId() == null) {
-            this.comments.add(this.editedComment);
-            saved = commentService.save(this.editedComment);
-        }
-        else {
-            saved = commentService.update(this.editedComment);
-            // aktualizacja this.topics z bazą
-            this.comments.replaceAll(c -> c != editedComment ? c : saved);
-        }
-        this.postController.addComment(p, saved);
+
+        this.comments.add(this.editedComment);
+
+
+
+        this.postController.addComment(p, editedComment);
 
         this.editedComment = null;
     }

@@ -4,9 +4,10 @@ import com.example.forumbiznes.Dao.PostDao;
 import com.example.forumbiznes.Model.Comment;
 import com.example.forumbiznes.Model.Post;
 import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
 
 import java.util.List;
-
+@Stateless
 public class PostServiceImpl implements PostService{
 
     @EJB

@@ -7,9 +7,43 @@
     <title>Example1</title>
 </h:head>
 <h:body>
-    <h2>Temat</h2>
+    <div style="align-content: center">
+        <h2>Temat</h2>
+        <h1>#{topicController.currentTopic.title}</h1>
+    </div>
 
-    <h:outputText value=" #{topicController.currentTopic.title}" />
+
+
+    <h:form>
+        <p:growl id="growl" showDetail="true" showSummary="false" keepAlive="" />
+        <p:commandButton value="Powrót" title="Powrót" action="index"/>
+        <p:commandButton icon="pi pi-plus" title="Dodaj post" action="#{postController.onAddPost()}"
+                         process="@this" update=":postDlg" oncomplete="PF('postDlg').show()" />
+    </h:form>
+
+    <p:dialog id="postDlg" widgetVar="postDlg" dynamic="true" modal="true" header="Tworzenie postu" showEffect="fade" hideEffect="fade">
+        <h:form id="postDlgForm">
+            <h:panelGrid columns="2">
+                <p:outputLabel value="Tytuł" for="@next" />
+                <p:inputText id="title" value="#{postController.editedPost.title}" required="true"/>
+
+                <p:outputLabel value="Treść" for="@next" />
+                <p:inputText id="content" value="#{postController.editedPost.content}" required="true"/>
+
+
+            </h:panelGrid>
+            <p:commandButton value="Zapisz" action="#{topicController.addPost(topicController.currentTopic,userBean.user,postController.onSavePost(topicController.currentTopic, postController.editedPost))}" process="@form"
+                             update=":mainForm:topicTable" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('postDlg').hide()" />
+            <p:commandButton value="Anuluj" action="#{postController.onCancelPost()}" process="@this"
+                             update=":mainForm:growl" oncomplete="PF('postDlg').hide()">
+                <p:resetInput target=":postDlgForm" />
+            </p:commandButton>
+        </h:form>
+    </p:dialog>
+
+
+
+
 
     <ul>
         <ui:repeat value="#{topicController.currentTopic.posts}" var="post">
