@@ -12,5 +12,7 @@ public interface TopicService {
     void delete(Topic t);
     Topic save(Topic editedTopic);
 
+    Topic update(Topic editedTopic);
+
     void addFollower(Topic t, User u);
 }

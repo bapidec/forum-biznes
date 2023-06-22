@@ -30,6 +30,7 @@ public class GenericDaoJpaImpl<T, K> implements GenericDao<T, K> {
 
     @Override
     public void delete(T t) {
+        t = em.merge(t);
         em.remove(t);
     }
 

@@ -34,6 +34,12 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
+    public Topic update(Topic editedTopic) {
+        dao.update(editedTopic);
+        return editedTopic;
+    }
+
+    @Override
     public void addFollower(Topic t, User u) {
 
     }
