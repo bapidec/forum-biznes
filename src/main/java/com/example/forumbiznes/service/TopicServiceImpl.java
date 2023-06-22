@@ -49,4 +49,11 @@ public class TopicServiceImpl implements TopicService {
     public void addPost(Topic t, User u, Post p) {
         dao.addPost(t, u, p);
     }
+
+    @Override
+    public boolean isFollowed(Topic t, User u) {
+        List<User> followers = dao.findFollowers(t, u);
+        if(followers.contains(u)) return true;
+        return false;
+    }
 }

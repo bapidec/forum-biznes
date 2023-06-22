@@ -90,6 +90,10 @@ public class TopicController implements Serializable {
         this.currentTopic = currentTopic;
     }
 
+    public boolean isFollowed(Topic t, User u) {
+        return this.topicService.isFollowed(t, u);
+    }
+
     public String goToTopicPage(Topic t) {
         this.currentTopic = t;
         return "topic?faces-redirect=true";

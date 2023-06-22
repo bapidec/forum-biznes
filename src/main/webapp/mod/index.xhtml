@@ -1,10 +1,22 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/core">
+
+<script type="text/javascript">
+    function showDialog(data) {
+        if (data.status === 'success') {
+            PF('topicDlg').show();
+        }
+    }
+</script>
+
+
 <h:head>
-    <title>Example1</title>
+    <title>Forum Romanum</title>
 </h:head>
 <h:body>
     <h:form  id="mainForm">>
@@ -23,7 +35,7 @@
                 Tematy
             </f:facet>
             <p:column headerText="Tytuł">
-                #{topic.title}
+                <p:commandLink title="#{topic.title}" action="#{topicController.goToTopicPage(topic)}" value="#{topic.title}" />
             </p:column>
             <p:column headerText="Usuń" width="80" style="text-align: center;">
                 <p:commandButton icon="pi pi-trash" title="Usuń" action="#{topicController.onRemoveTopic(topic)}"
@@ -31,7 +43,9 @@
                 </p:commandButton>
             </p:column>
             <p:column headerText="Edytuj" width="80" style="text-align: center;">
-                <h:commandButton value="Dodaj temat" action="welcome"/>
+                <h:commandButton value="Edytuj" action="#{topicController.onEditTopic(topic)}">
+                    <a:ajax execute="@this" render=":topicDlg" onevent="showDialog" />
+                </h:commandButton>
             </p:column>
         </p:dataTable>
     </h:form>
@@ -42,12 +56,11 @@
 
             <h:panelGrid columns="2">
                 <p:outputLabel value="Tytuł" for="@next" />
-                <p:inputText id="title" value="#{topicController.editedTopic.title}" required="true" />
-
+                <p:inputText id="title" value="#{topicController.editedTopic.title}" required="true"/>
             </h:panelGrid>
 
             <p:commandButton value="Zapisz" action="#{topicController.onSaveTopic()}" process="@form"
-                             update=":mainForm" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('topicDlg').hide()" />
+                             update=":mainForm:topicTable" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('topicDlg').hide()" />
             <p:commandButton value="Anuluj" action="#{topicController.onCancelTopic()}" process="@this"
                              update=":mainForm:growl" oncomplete="PF('topicDlg').hide()">
                 <p:resetInput target=":topicDlgForm" />

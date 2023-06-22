@@ -18,4 +18,6 @@ public interface TopicService {
     void addFollower(Topic t, User u);
 
     void addPost(Topic t, User u, Post p);
+
+    boolean isFollowed(Topic t, User u);
 }
