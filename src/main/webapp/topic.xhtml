@@ -9,10 +9,10 @@
 <h:body>
     <h2>Temat</h2>
 
-    <h:outputText value=" #{topicManagedBean.topicBean.title}" />
+    <h:outputText value=" #{topicController.currentTopic.title}" />
 
     <ul>
-        <ui:repeat value="#{topicManagedBean.topic.posts}" var="post">
+        <ui:repeat value="#{topicController.currentTopic.posts}" var="post">
             <li>
                 <h:link value="#{post.title}" outcome="post">
                     <f:param name="id" value="#{post.id}" />
