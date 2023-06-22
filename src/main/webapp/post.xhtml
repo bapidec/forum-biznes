@@ -16,15 +16,16 @@
         </div>
 <h:form>
     <h:commandButton value="Wróć" action="index"/>
+    <h:commandButton value="Dodaj komentarz" action="index"/>
 </h:form>
 
-        <ul>
+
             <ui:repeat value="#{postBean.comments}" var="comment">
-                <li>
-                    <h2>#{comment.title}</h2>
-                </li>
+
+                    <h2>#{comment.content}</h2>
+
             </ui:repeat>
-        </ul>
+
 
     </ui:define>
     </ui:composition>
