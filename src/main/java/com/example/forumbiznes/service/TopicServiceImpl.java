@@ -49,4 +49,9 @@ public class TopicServiceImpl implements TopicService {
     public void addPost(Topic t, User u, Post p) {
         dao.addPost(t, u, p);
     }
+
+    @Override
+    public void unfollow(Topic t, User u) {
+        dao.unfollow(t, u);
+    }
 }
