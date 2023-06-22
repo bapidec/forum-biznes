@@ -5,10 +5,9 @@ import com.example.forumbiznes.Model.User;
 import com.example.forumbiznes.service.TopicService;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
-
+import org.primefaces.PrimeFaces;
 import java.io.Serializable;
 import java.util.List;
 
@@ -44,11 +43,17 @@ public class TopicController implements Serializable {
             this.topics.add(this.editedTopic);
         }
 
-        Topic saved = topicService.save(this.editedTopic);
-        // aktualizacja z bazą
-        this.topics.replaceAll(t -> t != editedTopic ? t : saved);
+        try {
+            Topic saved = topicService.save(this.editedTopic);
+            // aktualizacja z bazą
+            this.topics.replaceAll(t -> t != editedTopic ? t : saved);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         this.editedTopic = null;
+
+        PrimeFaces.current().ajax().update(":mainForm:topicTable");
 
     }
 
