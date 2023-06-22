@@ -1,6 +1,5 @@
 package com.example.forumbiznes.controller;
 
-import com.example.forumbiznes.Model.Comment;
 import com.example.forumbiznes.Model.Post;
 import com.example.forumbiznes.Model.Topic;
 import com.example.forumbiznes.Model.User;
@@ -8,9 +7,8 @@ import com.example.forumbiznes.service.TopicService;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
-import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
-import org.primefaces.PrimeFaces;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -94,10 +92,10 @@ public class TopicController implements Serializable {
 
     public String goToTopicPage(Topic t) {
         this.currentTopic = t;
-        return "topic?id=" + t.getId() + "&faces-redirect=true";
+        return "topic?faces-redirect=true";
     }
-    public void addPost(Topic t, Post p) {
-        this.topicService.addPost(t, p);
+    public void addPost(Topic t, User u, Post p) {
+        this.topicService.addPost(t, u, p);
     }
 
 }

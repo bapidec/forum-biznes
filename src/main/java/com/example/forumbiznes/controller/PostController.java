@@ -3,6 +3,7 @@ package com.example.forumbiznes.controller;
 import com.example.forumbiznes.Model.Comment;
 import com.example.forumbiznes.Model.Post;
 import com.example.forumbiznes.Model.Topic;
+import com.example.forumbiznes.Model.User;
 import com.example.forumbiznes.service.PostService;
 import com.example.forumbiznes.service.PostServiceImpl;
 import jakarta.annotation.PostConstruct;
@@ -45,7 +46,7 @@ public class PostController implements Serializable {
         this.editedPost = p;
     }
 
-    public void onSavePost(Topic t) {
+    public void onSavePost(Topic t, User u) {
 
         Post saved;
 
@@ -59,7 +60,7 @@ public class PostController implements Serializable {
             // aktualizacja this.topics z bazą
             this.posts.replaceAll(p -> p != editedPost ? p : saved);
         }
-        this.topicController.addPost(t, saved);
+        this.topicController.addPost(t, u, saved);
 
         this.editedPost = null;
     }

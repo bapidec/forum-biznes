@@ -46,7 +46,7 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public void addPost(Topic t, Post p) {
-        dao.addPost(t, p);
+    public void addPost(Topic t, User u, Post p) {
+        dao.addPost(t, u, p);
     }
 }

@@ -17,5 +17,5 @@ public interface TopicService {
 
     void addFollower(Topic t, User u);
 
-    void addPost(Topic t, Post p);
+    void addPost(Topic t, User u, Post p);
 }

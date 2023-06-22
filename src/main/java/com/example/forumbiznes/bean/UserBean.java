@@ -40,6 +40,15 @@ public class UserBean implements Serializable {
 
         return user != null ? user.getLogin() : null;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public int getAccessLevel(){
         return user.getAccessLevel();
     }

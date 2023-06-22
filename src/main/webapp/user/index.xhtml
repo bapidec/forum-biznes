@@ -4,8 +4,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:a="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:a="http://xmlns.jcp.org/jsf/core">
 
 <script type="text/javascript">
     function showDialog(data) {
@@ -17,66 +16,60 @@
 
 
 <h:head>
-
     <title>Forum Romanum</title>
 </h:head>
 <h:body>
-
-<!--    <ui:composition template="/templates/template.xhtml">-->
-<!--        <ui:define name="content">-->
-            <h:form  id="mainForm">>
-                <p:growl id="growl" showDetail="true" showSummary="false" keepAlive="" />
+    <h:form  id="mainForm">>
+        <p:growl id="growl" showDetail="true" showSummary="false" keepAlive="" />
 
 
-                <p:commandButton icon="pi pi-plus" title="Dodaj konto" action="#{topicController.onAddTopic()}"
-                                 process="@this" update=":topicDlg" oncomplete="PF('topicDlg').show()" />
+        <p:commandButton icon="pi pi-plus" title="Dodaj konto" action="#{topicController.onAddTopic()}"
+                         process="@this" update=":topicDlg" oncomplete="PF('topicDlg').show()" />
 
-                <p:dataTable id="topicTable" value="#{topicController.topics}" var="topic" rowKey="#{topic.uid}"
-                             emptyMessage="Brak tematów, dodaj nowy temat" paginator="true" paginatorAlwaysVisible="false"
-                             paginatorPosition="bottom"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                             rows="10" rowsPerPageTemplate="10">
-                    <f:facet name="header">
-                        Tematy
-                    </f:facet>
-                    <p:column headerText="Tytuł">
-                        <p:commandLink title="#{topic.title}" action="#{topicController.goToTopicPage(topic)}" value="#{topic.title}" />
-                    </p:column>
-                    <p:column headerText="Usuń" width="80" style="text-align: center;">
-                        <p:commandButton icon="pi pi-trash" title="Usuń" action="#{topicController.onRemoveTopic(topic)}"
-                                         process="@this" update=":mainForm:topicTable">
-                        </p:commandButton>
-                    </p:column>
-                    <p:column headerText="Edytuj" width="80" style="text-align: center;">
-                        <h:commandButton value="Edytuj" action="#{topicController.onEditTopic(topic)}">
-                            <a:ajax execute="@this" render=":topicDlg" onevent="showDialog" />
-                        </h:commandButton>
-                    </p:column>
-                </p:dataTable>
-            </h:form>
+        <p:dataTable id="topicTable" value="#{topicController.topics}" var="topic" rowKey="#{topic.uid}"
+                     emptyMessage="Brak tematów, dodaj nowy temat" paginator="true" paginatorAlwaysVisible="false"
+                     paginatorPosition="bottom"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                     rows="10" rowsPerPageTemplate="10">
+            <f:facet name="header">
+                Tematy
+            </f:facet>
+            <p:column headerText="Tytuł">
+                <p:commandLink title="#{topic.title}" action="#{topicController.goToTopicPage(topic)}" value="#{topic.title}" />
+            </p:column>
+            <p:column headerText="Usuń" width="80" style="text-align: center;">
+                <p:commandButton icon="pi pi-trash" title="Usuń" action="#{topicController.onRemoveTopic(topic)}"
+                                 process="@this" update=":mainForm:topicTable">
+                </p:commandButton>
+            </p:column>
+            <p:column headerText="Edytuj" width="80" style="text-align: center;">
+                <h:commandButton value="Edytuj" action="#{topicController.onEditTopic(topic)}">
+                    <a:ajax execute="@this" render=":topicDlg" onevent="showDialog" />
+                </h:commandButton>
+            </p:column>
+        </p:dataTable>
+    </h:form>
 
-            <p:dialog id="topicDlg" widgetVar="topicDlg" dynamic="true" modal="true" header="Tworzenie tematu" showEffect="fade"
-                      hideEffect="fade">
-                <h:form id="topicDlgForm">
+    <p:dialog id="topicDlg" widgetVar="topicDlg" dynamic="true" modal="true" header="Tworzenie tematu" showEffect="fade"
+              hideEffect="fade">
+        <h:form id="topicDlgForm">
 
-                    <h:panelGrid columns="2">
-                        <p:outputLabel value="Tytuł" for="@next" />
-                        <p:inputText id="title" value="#{topicController.editedTopic.title}" required="true"/>
-                    </h:panelGrid>
+            <h:panelGrid columns="2">
+                <p:outputLabel value="Tytuł" for="@next" />
+                <p:inputText id="title" value="#{topicController.editedTopic.title}" required="true"/>
+            </h:panelGrid>
 
-                    <p:commandButton value="Zapisz" action="#{topicController.onSaveTopic()}" process="@form"
-                                     update=":mainForm:topicTable" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('topicDlg').hide()" />
-                    <p:commandButton value="Anuluj" action="#{topicController.onCancelTopic()}" process="@this"
-                                     update=":mainForm:growl" oncomplete="PF('topicDlg').hide()">
-                        <p:resetInput target=":topicDlgForm" />
-                    </p:commandButton>
-                </h:form>
-            </p:dialog>
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" header="Potwierdzenie">
-                <p:commandButton value="Tak" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-                <p:commandButton value="Nie" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-            </p:confirmDialog>
-<!--        </ui:define>-->
-<!--    </ui:composition>-->
+            <p:commandButton value="Zapisz" action="#{topicController.onSaveTopic()}" process="@form"
+                             update=":mainForm:topicTable" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('topicDlg').hide()" />
+            <p:commandButton value="Anuluj" action="#{topicController.onCancelTopic()}" process="@this"
+                             update=":mainForm:growl" oncomplete="PF('topicDlg').hide()">
+                <p:resetInput target=":topicDlgForm" />
+            </p:commandButton>
+        </h:form>
+    </p:dialog>
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" header="Potwierdzenie">
+        <p:commandButton value="Tak" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+        <p:commandButton value="Nie" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+    </p:confirmDialog>
 </h:body>
 </html>

@@ -20,7 +20,9 @@ import java.util.Map;
 @DataSourceDefinition(
     name = "java:global/JsfCrudDemoDataSource",
     className = "org.h2.jdbcx.JdbcDataSource",
-        url="jdbc:h2:C:\\Users\\BURAK\\Documents\\payara6\\glassfish\\domains\\domain1/lib/databases/embedded_default",
+        url="jdbc:h2:C:\\Program Files\\Payara\\payara6\\glassfish\\domains\\domain1/lib/databases/embedded_default",
+        minPoolSize = 2,
+        initialPoolSize = 2,
         user="",
         password=""
 )
