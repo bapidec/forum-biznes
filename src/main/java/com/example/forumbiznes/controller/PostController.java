@@ -1,9 +1,12 @@
 package com.example.forumbiznes.controller;
 
 import com.example.forumbiznes.Model.Post;
+import com.example.forumbiznes.Model.Topic;
+import com.example.forumbiznes.service.PostService;
 import com.example.forumbiznes.service.PostServiceImpl;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
@@ -11,12 +14,13 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class PostController implements Serializable {
     @EJB
-    private PostServiceImpl postService;
+    private PostService postService;
     private List<Post> posts;
     private Post editedPost;
+    private Post currentPost;
 
     @PostConstruct
     private void init() {
@@ -37,14 +41,18 @@ public class PostController implements Serializable {
 
     public void onSavePost() {
 
-        // jeśli add, nie edit
+        Post saved;
+
+        // jeśli nowy, nie edytowany
         if(this.editedPost.getId() == null) {
             this.posts.add(this.editedPost);
+            saved = postService.save(this.editedPost);
         }
-
-        Post saved = postService.save(this.editedPost);
-        // aktualizacja z bazą
-        this.posts.replaceAll(t -> t != editedPost ? t : saved);
+        else {
+            saved = postService.update(this.editedPost);
+            // aktualizacja this.topics z bazą
+            this.posts.replaceAll(t -> t != editedPost ? t : saved);
+        }
 
         this.editedPost = null;
 
@@ -69,6 +77,11 @@ public class PostController implements Serializable {
 
     public void setEditedPost(Post editedPost) {
         this.editedPost = editedPost;
+    }
+
+    public String goToPostPage(Post p) {
+        this.currentPost = p;
+        return "post?id=" + p.getId() + "&faces-redirect=true";
     }
 
 }

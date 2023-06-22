@@ -25,6 +25,17 @@ public class Post extends AbstractModel{
     @OneToMany(mappedBy="post")
     private List<Report> reports = new LinkedList<>();
 
+    @OneToMany(mappedBy="post", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Comment> comments = new LinkedList<>();
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     public Post(){
 
     }

@@ -8,4 +8,10 @@ public class PostDao extends GenericDaoJpaImpl<Post, Long>{
     public PostDao() {
         super(Post.class);
     }
+
+    public void addComment(Post p, Comment c) {
+        c.setPost(p);
+        p.getComments().add(c);
+        em.merge(p);
+    }
 }
