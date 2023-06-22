@@ -82,6 +82,14 @@ public class Post extends AbstractModel{
         this.topic = topic;
     }
 
+    public List<Report> getReports() {
+        return reports;
+    }
+
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
+    }
+
     @Override
     public String toString() {
         return title;

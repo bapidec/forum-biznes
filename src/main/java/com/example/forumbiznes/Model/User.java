@@ -105,6 +105,14 @@ public class User extends AbstractModel{
         this.posts = posts;
     }
 
+    public List<Report> getReports() {
+        return reports;
+    }
+
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
+    }
+
     @Override
     public String toString() {
         return login;

@@ -50,15 +50,11 @@ public class CommentController implements Serializable {
 
     public void onSaveComment(Post p) {
 
-        Comment saved;
-
-        // jeśli nowy, nie edytowany
 
         this.comments.add(this.editedComment);
 
-
-
         this.postController.addComment(p, editedComment);
+
 
         this.editedComment = null;
     }

@@ -66,9 +66,11 @@
         <security-role> <!-- 0 - user           1 - mod                 2 - admin -->
                 <role-name>0</role-name>
         </security-role>
+
         <security-role>
                 <role-name>1</role-name>
         </security-role>
+
         <security-role>
                 <role-name>2</role-name>
         </security-role>

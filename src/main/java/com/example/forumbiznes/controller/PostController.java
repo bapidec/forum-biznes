@@ -1,9 +1,6 @@
 package com.example.forumbiznes.controller;
 
-import com.example.forumbiznes.Model.Comment;
-import com.example.forumbiznes.Model.Post;
-import com.example.forumbiznes.Model.Topic;
-import com.example.forumbiznes.Model.User;
+import com.example.forumbiznes.Model.*;
 import com.example.forumbiznes.service.PostService;
 import com.example.forumbiznes.service.PostServiceImpl;
 import jakarta.annotation.PostConstruct;
@@ -47,21 +44,15 @@ public class PostController implements Serializable {
     }
 
     public void onSavePost(Topic t, User u) {
-
-        Post saved;
-
         // jeśli nowy, nie edytowany
         if(this.editedPost.getId() == null) {
             this.posts.add(this.editedPost);
-            saved = postService.save(this.editedPost);
+            this.topicController.addPost(t, u, this.editedPost);
         }
         else {
-            saved = postService.update(this.editedPost);
-            // aktualizacja this.topics z bazą
+            Post saved = postService.update(this.editedPost);
             this.posts.replaceAll(p -> p != editedPost ? p : saved);
         }
-        this.topicController.addPost(t, u, saved);
-
         this.editedPost = null;
     }
 
@@ -101,5 +92,9 @@ public class PostController implements Serializable {
 
     public void addComment(Post p, Comment c) {
         this.postService.addComment(p, c);
+    }
+
+    public void addReport(Post p, User u, Report editedReport) {
+        this.postService.addReport(p, u, editedReport);
     }
 }
