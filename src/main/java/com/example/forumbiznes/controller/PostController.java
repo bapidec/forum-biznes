@@ -20,9 +20,10 @@ import java.util.List;
 public class PostController implements Serializable {
     @EJB
     private PostService postService;
+  
     @Inject
     TopicController topicController;
-
+    
     private List<Post> posts;
     private Post editedPost;
     private Post currentPost;

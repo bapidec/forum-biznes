@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Example1</title>
+</h:head>
+<h:body>
+
+    <ui:composition template="/templates/template.xhtml">
+    <ui:define name="content">
+        <div style="text-align: center">
+            <h2>#{postBean.title}</h2>
+
+        </div>
+<h:form>
+    <h:commandButton value="Wróć" action="index"/>
+    <h:commandButton value="Dodaj komentarz" action="index"/>
+</h:form>
+
+
+            <ui:repeat value="#{postBean.comments}" var="comment">
+
+                    <h2>#{comment.content}</h2>
+
+            </ui:repeat>
+
+
+    </ui:define>
+    </ui:composition>
+
+
+</h:body>
+</html>

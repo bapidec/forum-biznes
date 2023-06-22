@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+    <title>Forum</title>
+    <h:outputStylesheet name="css/app.css"/>
+</h:head>
+<h:body>
+    <pe:layout fullPage="true" resizeTitle="resize" style="background-color:#FFFFFF;" >
+    <pe:layoutPane  position="north" size="68" id="north">
+        <ui:insert name="header">
+            <div style="text-align: center; background: cornflowerblue">
+                <h1>Forum</h1>
+            </div>
+        </ui:insert>
+    </pe:layoutPane >
+
+        <pe:layoutPane  styleClass="layoutUnitCenter" position="center">
+            <ui:insert name="content">content placeholder</ui:insert>
+        </pe:layoutPane >
+
+        <pe:layoutPane  position="south" resizable="true" id="south" >
+            <div style="text-align: center; background: cornflowerblue; position: fixed;  width: 100%;
+  height: 50px;">
+                <ui:insert name="footer"><h3>Wykonanli wspaniali ludzie: Michał Dorosz, Bartłomiej Dec, Grzegorz Denert</h3></ui:insert>
+            </div>
+        </pe:layoutPane >
+    </pe:layout>
+</h:body>
+</html>
