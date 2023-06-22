@@ -6,6 +6,7 @@ import com.example.forumbiznes.service.TopicService;
 import com.example.forumbiznes.service.TopicServiceImpl;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
@@ -22,7 +23,6 @@ public class TopicController implements Serializable {
 
     @PostConstruct
     private void init() {
-        topicService.save(new Topic("dupa"));
         this.topics = topicService.findAll();
     }
 
