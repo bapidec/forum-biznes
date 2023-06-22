@@ -1,6 +1,7 @@
 package com.example.forumbiznes.controller;
 
 import com.example.forumbiznes.Model.Post;
+import com.example.forumbiznes.service.PostService;
 import com.example.forumbiznes.service.PostServiceImpl;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
@@ -14,7 +15,7 @@ import java.util.List;
 @ViewScoped
 public class PostController implements Serializable {
     @EJB
-    private PostServiceImpl postService;
+    private PostService postService;
     private List<Post> posts;
     private Post editedPost;
 

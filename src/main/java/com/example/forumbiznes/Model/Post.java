@@ -1,5 +1,8 @@
 package com.example.forumbiznes.Model;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.annotation.ManagedProperty;
+import jakarta.inject.Named;
 import jakarta.persistence.*;
 
 import java.util.LinkedList;
@@ -7,6 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name="Posts")
+@Named("postBean")
+@RequestScoped
 public class Post extends AbstractModel{
     @Column(name="title")
     private String title;
@@ -24,6 +29,11 @@ public class Post extends AbstractModel{
 
     @OneToMany(mappedBy="post")
     private List<Report> reports = new LinkedList<>();
+
+
+    @OneToMany(mappedBy="post", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManagedProperty(value = "#{comments}")
+    private List<Comment> comments = new LinkedList<>();
 
     public Post(){
 
