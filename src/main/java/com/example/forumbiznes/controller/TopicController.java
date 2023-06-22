@@ -2,20 +2,22 @@ package com.example.forumbiznes.controller;
 
 import com.example.forumbiznes.Model.Topic;
 import com.example.forumbiznes.Model.User;
+import com.example.forumbiznes.service.TopicService;
 import com.example.forumbiznes.service.TopicServiceImpl;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.util.List;
 
-@Named
+@Named()
 @ViewScoped
 public class TopicController implements Serializable {
     @EJB
-    private TopicServiceImpl topicService;
+    private TopicService topicService;
     private List<Topic> topics;
     private Topic editedTopic;
 
@@ -71,5 +73,4 @@ public class TopicController implements Serializable {
     public void onFollowTopic(Topic t, User u) {
         topicService.addFollower(t, u);
     }
-
 }
