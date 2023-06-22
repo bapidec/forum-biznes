@@ -78,8 +78,15 @@ public class TopicController implements Serializable {
         this.editedTopic = editedTopic;
     }
 
+    public String isFollowed(Topic t, User u) {
+        return t.isFollowed(u) ? "pi pi-eye-slash" : "pi pi-eye";
+    }
     public void onFollowTopic(Topic t, User u) {
         topicService.addFollower(t, u);
+    }
+
+    public void onUnfollowTopic(Topic t, User u) {
+        topicService.unfollow(t, u);
     }
 
     public Topic getCurrentTopic() {
@@ -88,10 +95,6 @@ public class TopicController implements Serializable {
 
     public void setCurrentTopic(Topic currentTopic) {
         this.currentTopic = currentTopic;
-    }
-
-    public boolean isFollowed(Topic t, User u) {
-        return this.topicService.isFollowed(t, u);
     }
 
     public String goToTopicPage(Topic t) {

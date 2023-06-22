@@ -51,9 +51,7 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public boolean isFollowed(Topic t, User u) {
-        List<User> followers = dao.findFollowers(t, u);
-        if(followers.contains(u)) return true;
-        return false;
+    public void unfollow(Topic t, User u) {
+        dao.unfollow(t, u);
     }
 }

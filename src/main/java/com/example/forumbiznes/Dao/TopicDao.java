@@ -31,4 +31,10 @@ public class TopicDao extends GenericDaoJpaImpl<Topic, Long>{
     public List<User> findFollowers(Topic t, User u) {
         return t.getFollowers();
     }
+
+    public void unfollow(Topic t, User u) {
+        u.getTopics().remove(t);
+        t.getFollowers().remove(u);
+        em.merge(t);
+    }
 }

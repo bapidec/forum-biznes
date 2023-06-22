@@ -19,5 +19,5 @@ public interface TopicService {
 
     void addPost(Topic t, User u, Post p);
 
-    boolean isFollowed(Topic t, User u);
+    void unfollow(Topic t, User u);
 }

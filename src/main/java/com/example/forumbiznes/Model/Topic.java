@@ -39,6 +39,9 @@ public class Topic extends AbstractModel{
         return followers;
     }
 
+    public boolean isFollowed(User u) {
+        return this.followers.contains(u);
+    }
     public void setFollowers(List<User> followers) {
         this.followers = followers;
     }

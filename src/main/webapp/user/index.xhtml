@@ -38,8 +38,15 @@
                 <p:commandLink title="#{topic.title}" action="#{topicController.goToTopicPage(topic)}" value="#{topic.title}" />
             </p:column>
             <p:column headerText="Obserwuj" width="80" style="text-align: center;">
-                <p:commandButton icon="pi pi-eye" title="Obserwuj" action="#{topicController.onFollowTopic(topic, userBean.user)}"
-                                 process="@this" update=":mainForm:topicTable">
+                <p:commandButton icon="pi pi-eye"
+                                 title="Obserwuj"
+                                 action="#{topicController.onFollowTopic(topic, userBean.user)}"
+                                 process="@this" update=":mainForm:topicTable" rendered="#{!topic.isFollowed(userBean.user)}">
+                </p:commandButton>
+                <p:commandButton icon="pi pi-eye-slash"
+                                 title="Przestań obserwować"
+                                 action="#{topicController.onUnfollowTopic(topic, userBean.user)}"
+                                 process="@this" update=":mainForm:topicTable" rendered="#{topic.isFollowed(userBean.user)}">
                 </p:commandButton>
             </p:column>
         </p:dataTable>
