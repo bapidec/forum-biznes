@@ -29,7 +29,9 @@ public class User extends AbstractModel{
     @Column(name = "email")
     private String email;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name="users_topics", joinColumns=@JoinColumn(name="topic_id"), inverseJoinColumns=@JoinColumn(name="user_id"))
+    @JoinTable(name="users_topics",
+            joinColumns=@JoinColumn(name="user_id"),
+            inverseJoinColumns=@JoinColumn(name="topic_id"))
     private List<Topic> followedTopics = new LinkedList<>();
     @OneToMany(mappedBy="user", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Post> posts = new LinkedList<>();
