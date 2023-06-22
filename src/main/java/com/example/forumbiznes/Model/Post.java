@@ -22,9 +22,11 @@ public class Post extends AbstractModel{
     @JoinColumn(name = "Topics")
     private Topic topic;
 
-    @OneToMany(mappedBy="post")
+    @OneToMany(mappedBy="post", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Report> reports = new LinkedList<>();
 
+    @OneToMany(mappedBy="post", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Comment> comments = new LinkedList<>();
     public Post(){
 
     }

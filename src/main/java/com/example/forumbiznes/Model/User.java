@@ -16,10 +16,10 @@ import java.util.List;
 )
 
 @NamedQuery(
-        name="isLoginOccupied",
+        name="findUserByLogin",
         query="select user "
                 + "from com.example.forumbiznes.Model.User user "
-                + "where user.login = :login"
+                + "where user.login=:login"
 )
 public class User extends AbstractModel{
     @Column(name = "login")
@@ -28,15 +28,15 @@ public class User extends AbstractModel{
     private String password;
     @Column(name = "email")
     private String email;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name="users_topics", joinColumns=@JoinColumn(name="topic_id"), inverseJoinColumns=@JoinColumn(name="user_id"))
     private List<Topic> followedTopics = new LinkedList<>();
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Post> posts = new LinkedList<>();
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Report> reports = new LinkedList<>();
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Comment> comments = new LinkedList<>();
     @Column(name = "accessLevel")
     private int accessLevel;

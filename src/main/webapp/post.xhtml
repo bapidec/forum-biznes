@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>demo</title>
+</h:head>
+<h:body>
+    <h:form id="mainForm">
+        <p:growl id="growl" showDetail="true" showSummary="false" keepAlive="" />
+
+        <p:dataTable id="clientTable" value="#{}" var="client" rowKey="#{}"
+                     emptyMessage="Brak klientów, dodaj nowego klienta" paginator="true" paginatorAlwaysVisible="false"
+                     paginatorPosition="bottom"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                     rows="10" rowsPerPageTemplate="10">
+            <f:facet name="header">
+                Klienci
+            </f:facet>
+            <p:column headerText="Imię">
+                #{client.firstName}
+            </p:column>
+            <p:column headerText="Nazwisko">
+                #{client.lastName}
+            </p:column>
+            <p:column headerText="Email">
+                #{client.email}
+            </p:column>
+            <p:column headerText="Edytuj" width="80" style="text-align: center;">
+                <p:commandButton icon="pi pi-pencil" title="Edytuj" action="#{}"
+                                 process="@this" update=":clientDlg" oncomplete="PF('clientDlg').show()" />
+            </p:column>
+            <p:column headerText="Usuń" width="80" style="text-align: center;">
+                <p:commandButton icon="pi pi-trash" title="Usuń" action="#{}"
+                                 process="@this" update=":mainForm:clientTable">
+                    <p:confirm message="Czy chcesz usunąć klienta i jego konta ?" icon="pi pi-exclamation-triangle" />
+                </p:commandButton>
+            </p:column>
+            <f:facet name="footer">
+                <div style="text-align: left">
+                    <p:commandButton icon="pi pi-plus" title="Dodaj konto" action="#{}"
+                                     process="@this" update=":clientDlg" oncomplete="PF('clientDlg').show()" />
+                </div>
+            </f:facet>
+        </p:dataTable>
+    </h:form>
+    <p:dialog id="clientDlg" widgetVar="clientDlg" dynamic="true" modal="true" header="Dane klienta" showEffect="fade"
+              hideEffect="fade">
+        <h:form id="clientDlgForm">
+
+            <h:panelGrid columns="2">
+                <p:outputLabel value="Imię" for="@next" />
+                <p:inputText id="firstName" value="#{}" required="true" />
+                <p:outputLabel value="Nazwisko" for="@next" />
+                <p:inputText id="lastName" value="#{}" required="true" />
+                <p:outputLabel value="Email" for="@next" />
+                <p:inputText id="email" value="#{}" required="true" />
+            </h:panelGrid>
+
+            <div style="width:600px; margin: 1em">
+                <p:dataTable id="accountTable" value="#{}" var="account"
+                             rowKey="#{}" emptyMessage="Brak kont, dodaj nowe konto" rows="10" paginator="true"
+                             paginatorAlwaysVisible="false" paginatorPosition="bottom"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             rowsPerPageTemplate="10">
+                    <f:facet name="header">
+                        Konta klienta
+                    </f:facet>
+                    <p:column headerText="Id">
+                        #{}
+                    </p:column>
+                    <p:column headerText="Rodzaj">
+                        #{}
+                    </p:column>
+                    <p:column headerText="Saldo">
+                        <h:outputText value="#{}">
+                            <f:convertNumber locale="pl-PL" type="currency" currencySymbol="zł" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Edytuj" width="80" style="text-align: center;">
+                        <p:commandButton icon="pi pi-pencil" title="Edytuj"
+                                         action="#{}" process="@this" update=":accountDlg"
+                                         oncomplete="PF('accountDlg').show()" />
+                    </p:column>
+                    <p:column headerText="Usuń" width="80" style="text-align: center;">
+                        <p:commandButton icon="pi pi-trash" title="Usuń"
+                                         action="#{}" process="@this"
+                                         update=":clientDlgForm:accountTable">
+                            <p:confirm message="Czy chcesz usunąć konto ?" icon="pi pi-exclamation-triangle" />
+                        </p:commandButton>
+                    </p:column>
+                    <f:facet name="footer">
+                        <div style="text-align: left">
+                            <p:commandButton icon="pi pi-plus" action="#{}"
+                                             process="@this" update=":accountDlg" oncomplete="PF('accountDlg').show()" />
+                        </div>
+                    </f:facet>
+                </p:dataTable>
+            </div>
+            <p:commandButton value="Zapisz" action="#{}" process="@form"
+                             update=":mainForm" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('clientDlg').hide()" />
+            <p:commandButton value="Anuluj" action="#{}" process="@this"
+                             update=":mainForm:growl" oncomplete="PF('clientDlg').hide()">
+                <p:resetInput target=":clientDlgForm" />
+            </p:commandButton>
+        </h:form>
+    </p:dialog>
+    <p:dialog id="accountDlg" widgetVar="accountDlg" dynamic="true" modal="true" header="Dane konta" showEffect="fade"
+              hideEffect="fade">
+        <h:form id="accountDlgForm">
+            <h:panelGrid columns="2">
+                <p:outputLabel value="Rodzaj konta" for="@next" />
+                <p:selectOneMenu id="type" value="#{}" required="true">
+                    <f:selectItems value="#{" var="type" itemValue="#{type}"
+                                   itemLabel="#{text['account.type.'.concat(type)]}" />
+                </p:selectOneMenu>
+                <p:outputLabel value="Saldo" for="@next" />
+                <p:inputText id="balance" value="#{}" required="true">
+                    <f:convertNumber locale="pl-PL" maxFractionDigits="2" />
+                </p:inputText>
+            </h:panelGrid>
+            <p:commandButton value="Zatwierdź" action="#{}" process="@form"
+                             update=":clientDlgForm:accountTable :mainForm:growl"
+                             oncomplete="if (args &amp;&amp; !args.validationFailed) PF('accountDlg').hide()" />
+            <p:commandButton value="Anuluj" action="#{}" process="@this"
+                             update=":mainForm:growl" oncomplete="PF('accountDlg').hide()">
+                <p:resetInput target=":accountDlgForm" />
+            </p:commandButton>
+        </h:form>
+    </p:dialog>
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" header="Potwierdzenie">
+        <p:commandButton value="Tak" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+        <p:commandButton value="Nie" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+    </p:confirmDialog>
+</h:body>
+
+</html>

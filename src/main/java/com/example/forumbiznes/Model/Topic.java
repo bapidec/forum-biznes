@@ -8,12 +8,12 @@ import java.util.List;
 @Entity
 @Table(name="Topics")
 public class Topic extends AbstractModel{
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name="users_topics", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="topic_id"))
     private List<User> followers = new LinkedList<>();
     @Column(name = "title")
     private String title;
-    @OneToMany(mappedBy="topic")
+    @OneToMany(mappedBy="topic", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Post> posts = new LinkedList<>();
 
     public Topic(String title) {
