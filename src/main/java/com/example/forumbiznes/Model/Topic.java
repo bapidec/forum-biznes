@@ -16,10 +16,8 @@ public class Topic extends AbstractModel{
     @OneToMany(mappedBy="topic")
     private List<Post> posts = new LinkedList<>();
 
-    public Topic(List<User> followers, String title, List<Post> posts) {
-        this.followers = followers;
+    public Topic(String title) {
         this.title = title;
-        this.posts = posts;
     }
 
     public Topic(){

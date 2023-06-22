@@ -62,6 +62,7 @@
       &quot;h2&quot;
     ]
   }
+
 }</component>
   <component name="RunManager">
     <configuration name="GlassFish 6.2023.4" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 6.2023.4" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
@@ -136,6 +137,43 @@
         </option>
       </method>
     </configuration>
+    <configuration name="TopicControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="forum-biznes" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.forumbiznes.controller.TopicControllerTest" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.forumbiznes.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.forumbiznes.controller.TopicControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TopicControllerTest.testDeleteTopic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="forum-biznes" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.forumbiznes.controller.TopicControllerTest" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.forumbiznes.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.forumbiznes.controller.TopicControllerTest" />
+      <option name="METHOD_NAME" value="testDeleteTopic" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TopicControllerTest.testDeleteTopic" />
+        <item itemvalue="JUnit.TopicControllerTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -148,6 +186,7 @@
       <workItem from="1687346579348" duration="3000" />
       <workItem from="1687367658492" duration="130000" />
       <workItem from="1687373071793" duration="2890000" />
+      <workItem from="1687385676314" duration="9280000" />
     </task>
     <servers />
   </component>
