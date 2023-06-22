@@ -18,4 +18,10 @@ public class TopicDao extends GenericDaoJpaImpl<Topic, Long>{
         t.getPosts().add(p);
         em.merge(t);
     }
+
+    public void addFollower(Topic t, User u) {
+        u.getTopics().add(t);
+        t.getFollowers().add(u);
+        em.merge(t);
+    }
 }
