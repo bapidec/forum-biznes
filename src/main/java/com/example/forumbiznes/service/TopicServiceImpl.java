@@ -28,7 +28,7 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public Topic save(Topic editedTopic) {
+    public Topic save(Topic editedTopic){
         dao.save(editedTopic);
         return editedTopic;
     }
