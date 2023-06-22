@@ -1,5 +1,7 @@
 package com.example.forumbiznes.controller;
 
+import com.example.forumbiznes.Model.Comment;
+import com.example.forumbiznes.Model.Post;
 import com.example.forumbiznes.Model.Topic;
 import com.example.forumbiznes.Model.User;
 import com.example.forumbiznes.service.TopicService;
@@ -94,4 +96,8 @@ public class TopicController implements Serializable {
         this.currentTopic = t;
         return "topic?id=" + t.getId() + "&faces-redirect=true";
     }
+    public void addPost(Topic t, Post p) {
+        this.topicService.addPost(t, p);
+    }
+
 }

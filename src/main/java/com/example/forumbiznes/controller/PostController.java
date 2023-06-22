@@ -1,5 +1,6 @@
 package com.example.forumbiznes.controller;
 
+import com.example.forumbiznes.Model.Comment;
 import com.example.forumbiznes.Model.Post;
 import com.example.forumbiznes.Model.Topic;
 import com.example.forumbiznes.service.PostService;
@@ -8,6 +9,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
@@ -18,6 +20,9 @@ import java.util.List;
 public class PostController implements Serializable {
     @EJB
     private PostService postService;
+    @Inject
+    TopicController topicController;
+
     private List<Post> posts;
     private Post editedPost;
     private Post currentPost;
@@ -39,7 +44,7 @@ public class PostController implements Serializable {
         this.editedPost = p;
     }
 
-    public void onSavePost() {
+    public void onSavePost(Topic t) {
 
         Post saved;
 
@@ -51,11 +56,11 @@ public class PostController implements Serializable {
         else {
             saved = postService.update(this.editedPost);
             // aktualizacja this.topics z bazą
-            this.posts.replaceAll(t -> t != editedPost ? t : saved);
+            this.posts.replaceAll(p -> p != editedPost ? p : saved);
         }
+        this.topicController.addPost(t, saved);
 
         this.editedPost = null;
-
     }
 
     public void onRemovePost(Post p) {
@@ -84,4 +89,7 @@ public class PostController implements Serializable {
         return "post?id=" + p.getId() + "&faces-redirect=true";
     }
 
+    public void addComment(Post p, Comment c) {
+        this.postService.addComment(p, c);
+    }
 }

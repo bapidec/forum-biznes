@@ -71,9 +71,18 @@ public class Post extends AbstractModel{
         this.user = user;
     }
 
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
+
     @Override
     public String toString() {
         return title;
     }
+
 
 }
