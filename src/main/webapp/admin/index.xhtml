@@ -54,18 +54,22 @@
                 Zgłoszenia
             </f:facet>
 
-            <p:column headerText="Powód">
+            <p:column headerText="Powód" width="300">
                 <p:outputLabel title="#{report.reason}" value="#{report.reason}" />
+            </p:column>
+
+            <p:column headerText="Opis">
+                <p:outputLabel title="#{report.content}" value="#{report.content}" />
             </p:column>
 
             <p:column headerText="Usuń" width="80" style="text-align: center;">
                 <p:commandButton icon="pi pi-trash" title="Usuń" action="#{reportController.onRemoveReport(report)}"
-                                 process="@this" update=":mainForm:reportTable">
+                                 process="@this" update=":mainForm:reportsTable">
                 </p:commandButton>
             </p:column>
 
             <p:column headerText="Pokaż post" width="80" icon="pi pi-search" style="text-align: center;">
-                <h:commandButton value="Pokaż post">
+                <h:commandButton value="Pokaż post" action="#{postController.goToPostPage(reportController.showReportedPost(report))}" >
                     <a:ajax execute="@this" render=":reportDlg"/>
                 </h:commandButton>
             </p:column>
