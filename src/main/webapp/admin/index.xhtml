@@ -97,8 +97,7 @@
                 </p:commandButton>
             </p:column>
             <p:column headerText="Edytuj" width="80" style="text-align: center;">
-                <p:commandButton value="Edytuj" title="Edytuj" action="#{topicController.onEditTopic(topic)}">
-                    <a:ajax execute="@this" render=":topicDlg" onevent="showDialog" />
+                <p:commandButton value="Edytuj" title="Edytuj" action="#{topicController.onEditTopic(topic)}" oncomplete="PF('topicDlg').show()">
                 </p:commandButton>
             </p:column>
             <f:facet name="footer" >
