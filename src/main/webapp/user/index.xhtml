@@ -22,19 +22,15 @@
     <h:form  id="mainForm">
         <p:growl id="growl" showDetail="true" showSummary="false" keepAlive="" />
 
-
-        <p:commandButton icon="pi pi-plus" title="Dodaj konto" action="#{topicController.onAddTopic()}"
-                         process="@this" update=":topicDlg" oncomplete="PF('topicDlg').show()" />
-
         <p:dataTable id="topicTable" value="#{topicController.topics}" var="topic" rowKey="#{topic.uid}"
                      emptyMessage="Brak tematów, dodaj nowy temat" paginator="true" paginatorAlwaysVisible="false"
                      paginatorPosition="bottom"
                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                      rows="10" rowsPerPageTemplate="10">
-            <f:facet name="header">
+            <f:facet name="header" >
                 Tematy
             </f:facet>
-            <p:column headerText="Tytuł">
+            <p:column headerText="Tytuł" >
                 <p:commandLink title="#{topic.title}" action="#{topicController.goToTopicPage(topic)}" value="#{topic.title}" />
             </p:column>
             <p:column headerText="Obserwuj" width="80" style="text-align: center;">
@@ -49,6 +45,11 @@
                                  process="@this" update=":mainForm:topicTable" rendered="#{topic.isFollowed(userBean.user)}">
                 </p:commandButton>
             </p:column>
+            <f:facet name="footer" >
+                <p:commandButton icon="pi pi-plus" title="Dodaj temat" action="#{topicController.onAddTopic()}"
+                                 process="@this" update=":topicDlg" oncomplete="PF('topicDlg').show()" />
+                Dodaj temat
+            </f:facet>
         </p:dataTable>
     </h:form>
 

@@ -16,8 +16,7 @@
     <h:form  id="mainForm">
         <p:growl id="growl" showDetail="true" showSummary="false" keepAlive="" />
         <p:commandButton value="Powrót" title="Powrót" action="index"/>
-        <p:commandButton icon="pi pi-plus" title="Dodaj post" action="#{postController.onAddPost()}"
-                         process="@this" update=":postDlg" oncomplete="PF('postDlg').show()" />
+
 
 
         <p:dataTable id="postList" value="#{topicController.currentTopic.posts}" var="post" rowKey="#{topic.uid}"
@@ -27,8 +26,11 @@
                      rows="10" rowsPerPageTemplate="10">
             <f:facet name="header">
 
-                <h2> Posty kategorii:</h2>
-                <h1>#{topicController.currentTopic.title}</h1>
+                <h2> Posty tematu:</h2>
+                <h1 style="text-align: center">#{topicController.currentTopic.title}</h1>
+                <p:commandButton icon="pi pi-plus" title="Dodaj post" action="#{postController.onAddPost()}"
+                                 process="@this" update=":postDlg" oncomplete="PF('postDlg').show()" />
+                Dodaj post
             </f:facet>
             <p:column headerText="Tytuł">
                 <p:commandLink title="#{post.title}" action="#{postController.goToPostPage(post)}" value="#{post.title}" />
