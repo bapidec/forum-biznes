@@ -16,8 +16,6 @@ public class TopicDao extends GenericDaoJpaImpl<Topic, Long>{
 
     public void addPost(Topic t, User u, Post p) {
         u.getPosts().add(p);
-        p.setTopic(t);
-        p.setUser(u);
         t.getPosts().add(p);
         em.merge(t);
     }

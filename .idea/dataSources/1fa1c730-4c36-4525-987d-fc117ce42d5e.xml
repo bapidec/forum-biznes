@@ -172,6 +172,7 @@
     </schema>
     <sequence id="164" parent="163" name="SEQ_GEN_SEQUENCE">
       <DasType>BIGINT|0s</DasType>
+
       <SequenceIdentity>1(500)+50</SequenceIdentity>
       <StartValue>50</StartValue>
     </sequence>

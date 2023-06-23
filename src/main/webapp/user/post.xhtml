@@ -10,13 +10,25 @@
 
     <ui:composition template="/templates/template.xhtml">
     <ui:define name="content">
-        <h:form>
-            <p:commandButton value="Wróć" title="Wróć" action="topic"/>
-        </h:form>
+        <TABLE>
+        <TR>
+            <TD>
+                <h:form>
+                    <p:commandButton value="Wróć" title="Wróć" action="topic"/>
+                </h:form>
+            </TD>
+            <TD>
+                <h:form>
+                    <p:commandButton style="background-color: darkred" value="Zgłoś" title="Zgłoś" action="#{reportController.onAddReport()}" oncomplete="PF('dlg').show()"/>
+                </h:form>
+            </TD>
+        </TR>
+        </TABLE>
+
+
        <div style="text-align: center">
            <h2>#{postController.currentPost.title}</h2>
            <h1>#{postController.currentPost.content}</h1>
-
        </div>
 
 
@@ -49,13 +61,30 @@
             <h:form id="commentDlgForm">
                 <h:panelGrid columns="2">
                     <p:outputLabel value="Treść" for="@next" />
-                    <p:inputText id="content" value="#{commentController.editedComment.content}" required="true"/>
+                    <p:inputText id="content1" value="#{commentController.editedComment.content}" required="true"/>
                 </h:panelGrid>
                 <p:commandButton value="Zapisz" action="#{commentController.onSaveComment(postController.currentPost)}" process="@form"
                                  update=":mainForm:commentTable" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('commentDlg').hide()" />
                 <p:commandButton value="Anuluj" action="#{commentController.onCancelComment()}" process="@this"
                                  update=":mainForm:growl" oncomplete="PF('commentDlg').hide()">
                     <p:resetInput target=":commentDlgForm" />
+                </p:commandButton>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog id="dlg" widgetVar="dlg" dynamic="true" modal="true" header="Zgłoszenie" showEffect="fade" hideEffect="fade">
+            <h:form id="dlgForm">
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Powód" for="@next" />
+                    <p:inputText size="98" id="content2" value="#{reportController.editedReport.reason}" required="true"/>
+                    <p:outputLabel value="Opis" for="@next"/>
+                    <p:inputTextarea id="content" rows="20" cols="100" value="#{reportController.editedReport.content}" required="true"/>
+                </h:panelGrid>
+                <p:commandButton value="Zapisz" action="#{reportController.onSaveReport(postController.currentPost, userBean.user)}" process="@form"
+                                 oncomplete="if (args &amp;&amp; !args.validationFailed) PF('dlg').hide()" />
+                <p:commandButton value="Anuluj" action="#{reportController.onCancelReport()}" process="@this"
+                                 update=":mainForm:growl" oncomplete="PF('dlg').hide()">
+                    <p:resetInput target=":dlgForm" />
                 </p:commandButton>
             </h:form>
         </p:dialog>

@@ -18,8 +18,6 @@ public class PostDao extends GenericDaoJpaImpl<Post, Long>{
     }
 
     public void addReport(Post p, User u, Report r) {
-        u.getReports().add(r);
-        p.getReports().add(r);
         r.setPost(p);
         r.setUser(u);
         em.merge(r);
