@@ -10,28 +10,28 @@
 
     <ui:composition template="/templates/template.xhtml">
     <ui:define name="content">
-        <TABLE>
-        <TR>
-            <TD>
-                <h:form>
-                    <p:commandButton value="Wróć" title="Wróć" action="topic"/>
-                </h:form>
-            </TD>
-            <TD>
-                <h:form>
-                    <p:commandButton style="background-color: darkred" value="Zgłoś" title="Zgłoś" action="#{reportController.onAddReport()}" oncomplete="PF('dlg').show()"/>
-                </h:form>
-            </TD>
-        </TR>
-        </TABLE>
+
 
 
        <div style="text-align: center">
-           <h2>#{postController.currentPost.title}</h2>
-           <h1>#{postController.currentPost.content}</h1>
+           <h1>#{postController.currentPost.title}</h1>
+           <h2>#{postController.currentPost.content}</h2>
        </div>
 
-
+        <TABLE>
+            <TR>
+                <TD>
+                    <h:form>
+                        <p:commandButton value="Wróć" title="Wróć" action="topic"/>
+                    </h:form>
+                </TD>
+                <TD>
+                    <h:form>
+                        <p:commandButton style="background-color: darkred" value="Zgłoś" title="Zgłoś" action="#{reportController.onAddReport()}" oncomplete="PF('dlg').show()"/>
+                    </h:form>
+                </TD>
+            </TR>
+        </TABLE>
 <h:form id="mainForm">
         <p:growl id="growl" showDetail="true" showSummary="false" keepAlive="" />
 
