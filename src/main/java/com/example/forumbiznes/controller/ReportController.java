@@ -61,4 +61,6 @@ public class ReportController implements Serializable {
     public void setReports(List<Report> reports) {
         this.reports = reports;
     }
+
+
 }

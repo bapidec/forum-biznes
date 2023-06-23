@@ -28,7 +28,6 @@ public class ReportServiceImpl implements ReportService{
     public Post showReportedPost(Report r) {
         return dao.showReportedPost(r).orElse(null);
     }
-
     public Report save(Report editedReport) {
         dao.save(editedReport);
         return editedReport;
