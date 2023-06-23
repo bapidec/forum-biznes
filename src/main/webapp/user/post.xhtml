@@ -10,25 +10,33 @@
 
     <ui:composition template="/templates/template.xhtml">
     <ui:define name="content">
-        <div style="text-align: center">
-            <h2>#{postController.currentPost.title}</h2>
-            <h1>#{postController.currentPost.content}</h1>
+        <h:form>
+            <p:commandButton value="Wróć" title="Wróć" action="topic"/>
+        </h:form>
+       <div style="text-align: center">
+           <h2>#{postController.currentPost.title}</h2>
+           <h1>#{postController.currentPost.content}</h1>
+
+       </div>
 
 
-        </div>
 <h:form id="mainForm">
         <p:growl id="growl" showDetail="true" showSummary="false" keepAlive="" />
-    <h:commandButton value="Wróć" action="topic"/>
-    <p:commandButton icon="pi pi-plus" title="Dodaj komentarz" action="#{commentController.onAddComment()}"
-                     process="@this" update=":commentDlg" oncomplete="PF('commentDlg').show()"/>
+
+
     <p:dataTable id="commentTable" value="#{postController.currentPost.comments}" var="comment" rowKey="#{comment.uid}"
                  emptyMessage="Brak komentarzy, dodaj swój komentarz" paginator="true" paginatorAlwaysVisible="false"
                  paginatorPosition="bottom"
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                  rows="10" rowsPerPageTemplate="10">
+        <f:facet name="header">
 
-        <p:column headerText="Komnetarze">
-            <h1>#{comment.user.login}: #{comment.content}</h1>
+            <p:commandButton icon="pi pi-plus" title="Dodaj komentarz" action="#{commentController.onAddComment()}"
+                             process="@this" update=":commentDlg" oncomplete="PF('commentDlg').show()"/>
+            Dodaj komentarz
+        </f:facet>
+        <p:column headerText="Komentarze" style="font-size:14px;">
+            #{comment.user.login}: #{comment.content}
         </p:column>
 
     </p:dataTable>

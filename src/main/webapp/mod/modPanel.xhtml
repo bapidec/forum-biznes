@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Forum</title>
+</h:head>
+<h:body>
+    <div style="text-align: center">
+        <h2>Panel moderacji</h2>
+    </div>
+
+    <h:form id="mainForm">
+        <p:dataTable id="postTable" value="#{postController.posts}" var="post" rowKey="#{post.uid}"
+                     emptyMessage="Brak postów" paginator="true" paginatorAlwaysVisible="false"
+                     paginatorPosition="bottom"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                     rows="10" rowsPerPageTemplate="10">
+            <f:facet name="header">
+                Posty
+            </f:facet>
+            <p:column headerText="Użytkownik">
+                <h1>#{post.user.login}</h1>
+            </p:column>
+            <p:column headerText="Tytuł">
+                <h1>#{post.title}</h1>
+            </p:column>
+            <p:column headerText="Treść">
+                <h1>#{post.content}</h1>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+
+</h:body>
+</html>
