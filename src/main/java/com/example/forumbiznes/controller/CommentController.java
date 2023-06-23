@@ -5,6 +5,7 @@ import com.example.forumbiznes.Model.Comment;
 import com.example.forumbiznes.Model.Post;
 import com.example.forumbiznes.Model.Topic;
 import com.example.forumbiznes.bean.UserBean;
+import com.example.forumbiznes.interceptors.LoggingInterceptor;
 import com.example.forumbiznes.service.CommentService;
 import com.example.forumbiznes.service.CommentServiceImpl;
 import jakarta.annotation.PostConstruct;
@@ -12,11 +13,14 @@ import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.interceptor.Interceptor;
+import jakarta.interceptor.Interceptors;
 
 import java.io.Serializable;
 import java.util.List;
 @Named
 @SessionScoped
+@Interceptors(LoggingInterceptor.class)
 public class CommentController implements Serializable {
     @EJB
     private CommentService commentService;

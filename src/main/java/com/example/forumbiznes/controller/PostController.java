@@ -1,6 +1,7 @@
 package com.example.forumbiznes.controller;
 
 import com.example.forumbiznes.Model.*;
+import com.example.forumbiznes.interceptors.LoggingInterceptor;
 import com.example.forumbiznes.service.PostService;
 import com.example.forumbiznes.service.PostServiceImpl;
 import jakarta.annotation.PostConstruct;
@@ -9,12 +10,14 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.interceptor.Interceptors;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Named
 @SessionScoped
+@Interceptors(LoggingInterceptor.class)
 public class PostController implements Serializable {
     @EJB
     private PostService postService;

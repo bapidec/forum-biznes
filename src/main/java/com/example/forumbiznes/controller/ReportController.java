@@ -3,17 +3,20 @@ package com.example.forumbiznes.controller;
 import com.example.forumbiznes.Model.Post;
 import com.example.forumbiznes.Model.Report;
 import com.example.forumbiznes.Model.User;
+import com.example.forumbiznes.interceptors.LoggingInterceptor;
 import com.example.forumbiznes.service.ReportService;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.interceptor.Interceptors;
 
 import java.io.Serializable;
 import java.util.List;
 @Named
 @SessionScoped
+@Interceptors(LoggingInterceptor.class)
 public class ReportController implements Serializable {
     @EJB
     private ReportService reportService;

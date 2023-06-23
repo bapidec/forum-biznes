@@ -2,6 +2,7 @@ package com.example.forumbiznes.controller;
 
 import com.example.forumbiznes.Model.User;
 import com.example.forumbiznes.bean.UserBean;
+import com.example.forumbiznes.interceptors.LoggingInterceptor;
 import com.example.forumbiznes.service.UserService;
 import jakarta.annotation.ManagedBean;
 import jakarta.ejb.EJB;
@@ -13,6 +14,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.interceptor.Interceptors;
 import jakarta.security.enterprise.AuthenticationStatus;
 import jakarta.security.enterprise.SecurityContext;
 import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
@@ -24,6 +26,7 @@ import java.io.IOException;
 import java.io.Serializable;
 @ViewScoped
 @Named
+@Interceptors(LoggingInterceptor.class)
 public class LoginController implements Serializable {
 
     @Inject
