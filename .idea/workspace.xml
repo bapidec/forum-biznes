@@ -10,12 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c640247-78f3-4936-acd2-0d19ecef8829" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/interceptors/LoggingInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/service/TopicServiceTestImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1fa1c730-4c36-4525-987d-fc117ce42d5e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1fa1c730-4c36-4525-987d-fc117ce42d5e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/forumbiznes/Dao/TopicDaoTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/forumbiznes/Dao/UserDaoTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/forumbiznes/controller/TopicControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/forumbiznes/controller/TopicServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/ReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/TopicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/TopicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/interceptors/LoggingInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/interceptors/LoggingInterceptor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +94,7 @@
       <recent name="C:\Users\BURAK\Documents\forum-biznes\src\main\webapp\user" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TopicServiceTest.testFollowAndUnfollow">
+  <component name="RunManager" selected="GlassFish Server.GlassFish 6.2023.4">
     <configuration name="GlassFish 6.2023.4" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 6.2023.4" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -242,9 +248,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TopicServiceTest" />
         <item itemvalue="JUnit.TopicServiceTest.testFollowAndUnfollow" />
         <item itemvalue="JUnit.TopicServiceTest.testAddAndDeletePost" />
-        <item itemvalue="JUnit.TopicServiceTest" />
         <item itemvalue="JUnit.TopicServiceTest.testGetTopics" />
         <item itemvalue="JUnit.TopicServiceTest.testDeleteTopic" />
       </list>

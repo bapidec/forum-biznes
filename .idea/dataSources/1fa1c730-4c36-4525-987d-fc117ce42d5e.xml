@@ -172,7 +172,7 @@
     </schema>
     <sequence id="164" parent="163" name="SEQ_GEN_SEQUENCE">
       <DasType>BIGINT|0s</DasType>
-      <SequenceIdentity>1(1900)+50</SequenceIdentity>
+      <SequenceIdentity>1(100)+50</SequenceIdentity>
       <StartValue>50</StartValue>
     </sequence>
     <table id="165" parent="163" name="COMMENTS"/>
