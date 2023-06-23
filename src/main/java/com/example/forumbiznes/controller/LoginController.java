@@ -71,13 +71,13 @@ public class LoginController implements Serializable {
                 String accessDir;
                 switch(userBean.getUser().getAccessLevel()){
                     case 2:
-                        accessDir="admin/";
+                        accessDir="/admin/";
                         break;
                     case 1:
-                        accessDir="mod/";
+                        accessDir="/mod/";
                         break;
                     case 0:
-                        accessDir="user/";
+                        accessDir="/user/";
                         break;
                     default:
                         throw new Exception("Nie ma takiego numeru");
@@ -91,7 +91,7 @@ public class LoginController implements Serializable {
     public void onLogout() throws IOException {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         externalContext.invalidateSession();
-        externalContext.redirect(externalContext.getRequestContextPath()+"login.xhtml");
+        externalContext.redirect(externalContext.getRequestContextPath()+"/login.xhtml");
     }
 
     private AuthenticationStatus continueAuthentication() {

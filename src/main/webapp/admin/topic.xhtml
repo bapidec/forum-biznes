@@ -12,7 +12,8 @@
     </div>
 
 
-
+    <ui:composition template="/templates/template.xhtml">
+    <ui:define name="content">
     <h:form  id="mainForm">
         <p:growl id="growl" showDetail="true" showSummary="false" keepAlive="" />
         <p:commandButton value="Powrót" title="Powrót" action="index"/>
@@ -62,6 +63,7 @@
         <p:commandButton value="Tak" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
         <p:commandButton value="Nie" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
     </p:confirmDialog>
-
+    </ui:define>
+    </ui:composition>
 </h:body>
 </html>
