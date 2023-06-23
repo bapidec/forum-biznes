@@ -10,13 +10,25 @@
 
     <ui:composition template="/templates/template.xhtml">
     <ui:define name="content">
-        <h:form>
-            <p:commandButton value="Wróć" title="Wróć" action="topic"/>
-        </h:form>
+        <TABLE>
+        <TR>
+            <TD>
+                <h:form>
+                    <p:commandButton value="Wróć" title="Wróć" action="topic"/>
+                </h:form>
+            </TD>
+            <TD>
+                <h:form>
+                    <p:commandButton style="background-color: darkred" value="Zgłoś" title="Zgłoś" action="reportController.onAddNewReport" onclick="PF('dlg').show();"/>
+                </h:form>
+            </TD>
+        </TR>
+        </TABLE>
+
+
        <div style="text-align: center">
            <h2>#{postController.currentPost.title}</h2>
            <h1>#{postController.currentPost.content}</h1>
-
        </div>
 
 
@@ -64,6 +76,23 @@
             <p:commandButton value="Tak" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
             <p:commandButton value="Nie" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
         </p:confirmDialog>
+
+        <p:dialog header="Zgłoszenie" widgetVar="dlg" modal="true" width="1000" height="500">
+
+            <TABLE>
+                <TR>
+                    <td><p:outputLabel value="Powód" for="@next" /></td>
+                    <td><p:inputText id="reason" required="true" size="98" value="#{reportController.editedReport.reason}"/></td>
+                </TR>
+                <TR>
+                    <td width="40"><p:outputLabel value="Opis"/></td>
+                    <td><p:inputTextarea required="true" rows="20" cols="100" value="#{reportController.editedReport.content}"/></td>
+                </TR>
+                <TR>
+                    <td><p:commandButton value="Zatwierdź" action="#{reportController.onSaveReport(userBean.user, postController.currentPost)}" onclick="PF('dlg').hide();"/></td>
+                </TR>
+            </TABLE>
+        </p:dialog>
 
     </ui:define>
     </ui:composition>

@@ -58,6 +58,14 @@ public class ReportController implements Serializable {
         this.editedReport = null;
     }
 
+    public Report getEditedReport() {
+        return editedReport;
+    }
+
+    public void setEditedReport(Report editedReport) {
+        this.editedReport = editedReport;
+    }
+
     public void setReports(List<Report> reports) {
         this.reports = reports;
     }

@@ -172,16 +172,16 @@
     </schema>
     <sequence id="164" parent="163" name="SEQ_GEN_SEQUENCE">
       <DasType>BIGINT|0s</DasType>
-      <SequenceIdentity>1(2650)+50</SequenceIdentity>
+      <SequenceIdentity>1(200)+50</SequenceIdentity>
       <StartValue>50</StartValue>
     </sequence>
     <table id="165" parent="163" name="COMMENTS"/>
     <table id="166" parent="163" name="POSTS"/>
     <table id="167" parent="163" name="REPORTS"/>
     <table id="168" parent="163" name="TOPICS"/>
-    <table id="169" parent="163" name="USERS"/>
-    <table id="170" parent="163" name="USERS_TOPICS"/>
-    <table id="171" parent="163" name="USER_TOPIC"/>
+    <table id="169" parent="163" name="TOPICS_USERS"/>
+    <table id="170" parent="163" name="USERS"/>
+    <table id="171" parent="163" name="USERS_TOPICS"/>
     <column id="172" parent="165" name="ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
@@ -388,130 +388,130 @@
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="216" parent="169" name="ID">
+    <column id="216" parent="169" name="TOPIC_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="217" parent="169" name="ACCESSLEVEL">
+    <column id="217" parent="169" name="FOLLOWERS_ID">
+      <DasType>BIGINT|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="218" parent="169" name="FK_TOPICS_USERS_TOPIC_ID">
+      <ColNames>TOPIC_ID</ColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_9</RefKeyName>
+      <RefTableName>TOPICS</RefTableName>
+    </foreign-key>
+    <foreign-key id="219" parent="169" name="FK_TOPICS_USERS_FOLLOWERS_ID">
+      <ColNames>FOLLOWERS_ID</ColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_4</RefKeyName>
+      <RefTableName>USERS</RefTableName>
+    </foreign-key>
+    <index id="220" parent="169" name="PRIMARY_KEY_1">
+      <ColNames>TOPIC_ID
+FOLLOWERS_ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <index id="221" parent="169" name="FK_TOPICS_USERS_TOPIC_ID_INDEX_1">
+      <ColNames>TOPIC_ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <index id="222" parent="169" name="FK_TOPICS_USERS_FOLLOWERS_ID_INDEX_1">
+      <ColNames>FOLLOWERS_ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <key id="223" parent="169" name="CONSTRAINT_1">
+      <ColNames>TOPIC_ID
+FOLLOWERS_ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="224" parent="170" name="ID">
+      <DasType>BIGINT|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="225" parent="170" name="ACCESSLEVEL">
       <DasType>INTEGER|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="218" parent="169" name="CREATE_DATE">
+    <column id="226" parent="170" name="CREATE_DATE">
       <DasType>TIMESTAMP|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="219" parent="169" name="EMAIL">
+    <column id="227" parent="170" name="EMAIL">
       <DasType>CHARACTER VARYING|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="220" parent="169" name="LOGIN">
+    <column id="228" parent="170" name="LOGIN">
       <DasType>CHARACTER VARYING|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="221" parent="169" name="UPDATE_DATA">
+    <column id="229" parent="170" name="UPDATE_DATA">
       <DasType>TIMESTAMP|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="222" parent="169" name="PASSWORD">
+    <column id="230" parent="170" name="PASSWORD">
       <DasType>CHARACTER VARYING|0s</DasType>
       <Position>7</Position>
     </column>
-    <index id="223" parent="169" name="PRIMARY_KEY_4">
+    <index id="231" parent="170" name="PRIMARY_KEY_4">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="224" parent="169" name="CONSTRAINT_4">
+    <key id="232" parent="170" name="CONSTRAINT_4">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="225" parent="170" name="TOPIC_ID">
+    <column id="233" parent="171" name="USER_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="226" parent="170" name="USER_ID">
+    <column id="234" parent="171" name="TOPIC_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="227" parent="170" name="FK_USERS_TOPICS_TOPIC_ID">
-      <ColNames>TOPIC_ID</ColNames>
+    <foreign-key id="235" parent="171" name="FK_USERS_TOPICS_USER_ID">
+      <ColNames>USER_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_4</RefKeyName>
       <RefTableName>USERS</RefTableName>
     </foreign-key>
-    <foreign-key id="228" parent="170" name="FK_USERS_TOPICS_USER_ID">
-      <ColNames>USER_ID</ColNames>
+    <foreign-key id="236" parent="171" name="FK_USERS_TOPICS_TOPIC_ID">
+      <ColNames>TOPIC_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_9</RefKeyName>
       <RefTableName>TOPICS</RefTableName>
     </foreign-key>
-    <index id="229" parent="170" name="PRIMARY_KEY_D">
-      <ColNames>TOPIC_ID
-USER_ID</ColNames>
+    <index id="237" parent="171" name="PRIMARY_KEY_D">
+      <ColNames>USER_ID
+TOPIC_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="230" parent="170" name="FK_USERS_TOPICS_TOPIC_ID_INDEX_D">
+    <index id="238" parent="171" name="FK_USERS_TOPICS_USER_ID_INDEX_D">
+      <ColNames>USER_ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <index id="239" parent="171" name="FK_USERS_TOPICS_TOPIC_ID_INDEX_D">
       <ColNames>TOPIC_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="231" parent="170" name="FK_USERS_TOPICS_USER_ID_INDEX_D">
-      <ColNames>USER_ID</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-    </index>
-    <key id="232" parent="170" name="CONSTRAINT_D">
-      <ColNames>TOPIC_ID
-USER_ID</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-    </key>
-    <column id="233" parent="171" name="FOLLOWERS_ID">
-      <DasType>BIGINT|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="234" parent="171" name="FOLLOWEDTOPICS_ID">
-      <DasType>BIGINT|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <foreign-key id="235" parent="171" name="FK_USER_TOPIC_FOLLOWERS_ID">
-      <ColNames>FOLLOWERS_ID</ColNames>
-      <OnDelete>restrict</OnDelete>
-      <OnUpdate>restrict</OnUpdate>
-      <RefKeyName>CONSTRAINT_4</RefKeyName>
-      <RefTableName>USERS</RefTableName>
-    </foreign-key>
-    <foreign-key id="236" parent="171" name="FK_USER_TOPIC_FOLLOWEDTOPICS_ID">
-      <ColNames>FOLLOWEDTOPICS_ID</ColNames>
-      <OnDelete>restrict</OnDelete>
-      <OnUpdate>restrict</OnUpdate>
-      <RefKeyName>CONSTRAINT_9</RefKeyName>
-      <RefTableName>TOPICS</RefTableName>
-    </foreign-key>
-    <index id="237" parent="171" name="PRIMARY_KEY_C">
-      <ColNames>FOLLOWERS_ID
-FOLLOWEDTOPICS_ID</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <Unique>1</Unique>
-    </index>
-    <index id="238" parent="171" name="FK_USER_TOPIC_FOLLOWERS_ID_INDEX_C">
-      <ColNames>FOLLOWERS_ID</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-    </index>
-    <index id="239" parent="171" name="FK_USER_TOPIC_FOLLOWEDTOPICS_ID_INDEX_C">
-      <ColNames>FOLLOWEDTOPICS_ID</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-    </index>
-    <key id="240" parent="171" name="CONSTRAINT_C">
-      <ColNames>FOLLOWERS_ID
-FOLLOWEDTOPICS_ID</ColNames>
+    <key id="240" parent="171" name="CONSTRAINT_D">
+      <ColNames>USER_ID
+TOPIC_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
