@@ -10,10 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c640247-78f3-4936-acd2-0d19ecef8829" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/1fa1c730-4c36-4525-987d-fc117ce42d5e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1fa1c730-4c36-4525-987d-fc117ce42d5e.xml" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/mod/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/mod/index.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/mod/modPanel.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/user/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user/index.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +52,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -82,6 +83,9 @@
       <recent name="C:\Users\BURAK\Documents\forum-biznes\src\main\webapp\admin" />
       <recent name="C:\Users\bapid\JWorkspace\forum-biznes\src\main\webapp\user" />
       <recent name="C:\Users\bapid\JWorkspace\forum-biznes\src\test\resources\META-INF" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\BURAK\Documents\forum-biznes\src\main\webapp\user" />
     </key>
   </component>
   <component name="RunManager" selected="GlassFish Server.GlassFish 6.2023.4">

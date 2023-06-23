@@ -172,345 +172,299 @@
     </schema>
     <sequence id="164" parent="163" name="SEQ_GEN_SEQUENCE">
       <DasType>BIGINT|0s</DasType>
-
-      <SequenceIdentity>1(500)+50</SequenceIdentity>
+      <SequenceIdentity>1(1900)+50</SequenceIdentity>
       <StartValue>50</StartValue>
     </sequence>
     <table id="165" parent="163" name="COMMENTS"/>
     <table id="166" parent="163" name="POSTS"/>
     <table id="167" parent="163" name="REPORTS"/>
     <table id="168" parent="163" name="TOPICS"/>
-    <table id="169" parent="163" name="TOPICS_USERS"/>
-    <table id="170" parent="163" name="USERS"/>
-    <table id="171" parent="163" name="USERS_TOPICS"/>
-    <column id="172" parent="165" name="ID">
+    <table id="169" parent="163" name="USERS"/>
+    <table id="170" parent="163" name="USERS_TOPICS"/>
+    <column id="171" parent="165" name="ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="173" parent="165" name="CONTENT">
+    <column id="172" parent="165" name="CONTENT">
       <DasType>CHARACTER VARYING|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="174" parent="165" name="CREATE_DATE">
+    <column id="173" parent="165" name="CREATE_DATE">
       <DasType>TIMESTAMP|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="175" parent="165" name="UPDATE_DATA">
+    <column id="174" parent="165" name="UPDATE_DATA">
       <DasType>TIMESTAMP|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="176" parent="165" name="POSTS">
+    <column id="175" parent="165" name="POSTS">
       <DasType>BIGINT|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="177" parent="165" name="USERS">
+    <column id="176" parent="165" name="USERS">
       <DasType>BIGINT|0s</DasType>
       <Position>6</Position>
     </column>
-    <foreign-key id="178" parent="165" name="FK_COMMENTS_POSTS">
+    <foreign-key id="177" parent="165" name="FK_COMMENTS_POSTS">
       <ColNames>POSTS</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_48</RefKeyName>
       <RefTableName>POSTS</RefTableName>
     </foreign-key>
-    <foreign-key id="179" parent="165" name="FK_COMMENTS_USERS">
+    <foreign-key id="178" parent="165" name="FK_COMMENTS_USERS">
       <ColNames>USERS</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_4</RefKeyName>
       <RefTableName>USERS</RefTableName>
     </foreign-key>
-    <index id="180" parent="165" name="PRIMARY_KEY_A">
+    <index id="179" parent="165" name="PRIMARY_KEY_A">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="181" parent="165" name="FK_COMMENTS_POSTS_INDEX_A">
+    <index id="180" parent="165" name="FK_COMMENTS_POSTS_INDEX_A">
       <ColNames>POSTS</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="182" parent="165" name="FK_COMMENTS_USERS_INDEX_A">
+    <index id="181" parent="165" name="FK_COMMENTS_USERS_INDEX_A">
       <ColNames>USERS</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="183" parent="165" name="CONSTRAINT_A">
+    <key id="182" parent="165" name="CONSTRAINT_A">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="184" parent="166" name="ID">
+    <column id="183" parent="166" name="ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="185" parent="166" name="CONTENT">
+    <column id="184" parent="166" name="CONTENT">
       <DasType>CHARACTER VARYING|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="186" parent="166" name="CREATE_DATE">
+    <column id="185" parent="166" name="CREATE_DATE">
       <DasType>TIMESTAMP|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="187" parent="166" name="UPDATE_DATA">
+    <column id="186" parent="166" name="UPDATE_DATA">
       <DasType>TIMESTAMP|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="188" parent="166" name="TITLE">
+    <column id="187" parent="166" name="TITLE">
       <DasType>CHARACTER VARYING|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="189" parent="166" name="TOPICS">
+    <column id="188" parent="166" name="TOPICS">
       <DasType>BIGINT|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="190" parent="166" name="USERS">
+    <column id="189" parent="166" name="USERS">
       <DasType>BIGINT|0s</DasType>
       <Position>7</Position>
     </column>
-    <foreign-key id="191" parent="166" name="FK_POSTS_TOPICS">
+    <foreign-key id="190" parent="166" name="FK_POSTS_TOPICS">
       <ColNames>TOPICS</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_9</RefKeyName>
       <RefTableName>TOPICS</RefTableName>
     </foreign-key>
-    <foreign-key id="192" parent="166" name="FK_POSTS_USERS">
+    <foreign-key id="191" parent="166" name="FK_POSTS_USERS">
       <ColNames>USERS</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_4</RefKeyName>
       <RefTableName>USERS</RefTableName>
     </foreign-key>
-    <index id="193" parent="166" name="PRIMARY_KEY_48">
+    <index id="192" parent="166" name="PRIMARY_KEY_48">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="194" parent="166" name="FK_POSTS_TOPICS_INDEX_4">
+    <index id="193" parent="166" name="FK_POSTS_TOPICS_INDEX_4">
       <ColNames>TOPICS</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="195" parent="166" name="FK_POSTS_USERS_INDEX_4">
+    <index id="194" parent="166" name="FK_POSTS_USERS_INDEX_4">
       <ColNames>USERS</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="196" parent="166" name="CONSTRAINT_48">
+    <key id="195" parent="166" name="CONSTRAINT_48">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="197" parent="167" name="ID">
+    <column id="196" parent="167" name="ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="198" parent="167" name="CONTENT">
+    <column id="197" parent="167" name="CONTENT">
       <DasType>CHARACTER VARYING|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="199" parent="167" name="CREATE_DATE">
+    <column id="198" parent="167" name="CREATE_DATE">
       <DasType>TIMESTAMP|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="200" parent="167" name="UPDATE_DATA">
+    <column id="199" parent="167" name="UPDATE_DATA">
       <DasType>TIMESTAMP|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="201" parent="167" name="REASON">
+    <column id="200" parent="167" name="REASON">
       <DasType>CHARACTER VARYING|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="202" parent="167" name="POSTS">
+    <column id="201" parent="167" name="POSTS">
       <DasType>BIGINT|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="203" parent="167" name="USERS">
+    <column id="202" parent="167" name="USERS">
       <DasType>BIGINT|0s</DasType>
       <Position>7</Position>
     </column>
-    <foreign-key id="204" parent="167" name="FK_REPORTS_POSTS">
+    <foreign-key id="203" parent="167" name="FK_REPORTS_POSTS">
       <ColNames>POSTS</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_48</RefKeyName>
       <RefTableName>POSTS</RefTableName>
     </foreign-key>
-    <foreign-key id="205" parent="167" name="FK_REPORTS_USERS">
+    <foreign-key id="204" parent="167" name="FK_REPORTS_USERS">
       <ColNames>USERS</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_4</RefKeyName>
       <RefTableName>USERS</RefTableName>
     </foreign-key>
-    <index id="206" parent="167" name="PRIMARY_KEY_6">
+    <index id="205" parent="167" name="PRIMARY_KEY_6">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="207" parent="167" name="FK_REPORTS_POSTS_INDEX_6">
+    <index id="206" parent="167" name="FK_REPORTS_POSTS_INDEX_6">
       <ColNames>POSTS</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="208" parent="167" name="FK_REPORTS_USERS_INDEX_6">
+    <index id="207" parent="167" name="FK_REPORTS_USERS_INDEX_6">
       <ColNames>USERS</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="209" parent="167" name="CONSTRAINT_6">
+    <key id="208" parent="167" name="CONSTRAINT_6">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="210" parent="168" name="ID">
+    <column id="209" parent="168" name="ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="211" parent="168" name="CREATE_DATE">
+    <column id="210" parent="168" name="CREATE_DATE">
       <DasType>TIMESTAMP|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="212" parent="168" name="UPDATE_DATA">
+    <column id="211" parent="168" name="UPDATE_DATA">
       <DasType>TIMESTAMP|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="213" parent="168" name="TITLE">
+    <column id="212" parent="168" name="TITLE">
       <DasType>CHARACTER VARYING|0s</DasType>
       <Position>4</Position>
     </column>
-    <index id="214" parent="168" name="PRIMARY_KEY_9">
+    <index id="213" parent="168" name="PRIMARY_KEY_9">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="215" parent="168" name="CONSTRAINT_9">
+    <key id="214" parent="168" name="CONSTRAINT_9">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="216" parent="169" name="TOPIC_ID">
+    <column id="215" parent="169" name="ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="217" parent="169" name="FOLLOWERS_ID">
-      <DasType>BIGINT|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <foreign-key id="218" parent="169" name="FK_TOPICS_USERS_TOPIC_ID">
-      <ColNames>TOPIC_ID</ColNames>
-      <OnDelete>restrict</OnDelete>
-      <OnUpdate>restrict</OnUpdate>
-      <RefKeyName>CONSTRAINT_9</RefKeyName>
-      <RefTableName>TOPICS</RefTableName>
-    </foreign-key>
-    <foreign-key id="219" parent="169" name="FK_TOPICS_USERS_FOLLOWERS_ID">
-      <ColNames>FOLLOWERS_ID</ColNames>
-      <OnDelete>restrict</OnDelete>
-      <OnUpdate>restrict</OnUpdate>
-      <RefKeyName>CONSTRAINT_4</RefKeyName>
-      <RefTableName>USERS</RefTableName>
-    </foreign-key>
-    <index id="220" parent="169" name="PRIMARY_KEY_1">
-      <ColNames>TOPIC_ID
-FOLLOWERS_ID</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <Unique>1</Unique>
-    </index>
-    <index id="221" parent="169" name="FK_TOPICS_USERS_TOPIC_ID_INDEX_1">
-      <ColNames>TOPIC_ID</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-    </index>
-    <index id="222" parent="169" name="FK_TOPICS_USERS_FOLLOWERS_ID_INDEX_1">
-      <ColNames>FOLLOWERS_ID</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-    </index>
-    <key id="223" parent="169" name="CONSTRAINT_1">
-      <ColNames>TOPIC_ID
-FOLLOWERS_ID</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-    </key>
-    <column id="224" parent="170" name="ID">
-      <DasType>BIGINT|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="225" parent="170" name="ACCESSLEVEL">
+    <column id="216" parent="169" name="ACCESSLEVEL">
       <DasType>INTEGER|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="226" parent="170" name="CREATE_DATE">
+    <column id="217" parent="169" name="CREATE_DATE">
       <DasType>TIMESTAMP|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="227" parent="170" name="EMAIL">
+    <column id="218" parent="169" name="EMAIL">
       <DasType>CHARACTER VARYING|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="228" parent="170" name="LOGIN">
+    <column id="219" parent="169" name="LOGIN">
       <DasType>CHARACTER VARYING|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="229" parent="170" name="UPDATE_DATA">
+    <column id="220" parent="169" name="UPDATE_DATA">
       <DasType>TIMESTAMP|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="230" parent="170" name="PASSWORD">
+    <column id="221" parent="169" name="PASSWORD">
       <DasType>CHARACTER VARYING|0s</DasType>
       <Position>7</Position>
     </column>
-    <index id="231" parent="170" name="PRIMARY_KEY_4">
+    <index id="222" parent="169" name="PRIMARY_KEY_4">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="232" parent="170" name="CONSTRAINT_4">
+    <key id="223" parent="169" name="CONSTRAINT_4">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="233" parent="171" name="USER_ID">
+    <column id="224" parent="170" name="USER_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="234" parent="171" name="TOPIC_ID">
+    <column id="225" parent="170" name="TOPIC_ID">
       <DasType>BIGINT|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="235" parent="171" name="FK_USERS_TOPICS_USER_ID">
+    <foreign-key id="226" parent="170" name="FK_USERS_TOPICS_USER_ID">
       <ColNames>USER_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_4</RefKeyName>
       <RefTableName>USERS</RefTableName>
     </foreign-key>
-    <foreign-key id="236" parent="171" name="FK_USERS_TOPICS_TOPIC_ID">
+    <foreign-key id="227" parent="170" name="FK_USERS_TOPICS_TOPIC_ID">
       <ColNames>TOPIC_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_9</RefKeyName>
       <RefTableName>TOPICS</RefTableName>
     </foreign-key>
-    <index id="237" parent="171" name="PRIMARY_KEY_D">
+    <index id="228" parent="170" name="PRIMARY_KEY_D">
       <ColNames>USER_ID
 TOPIC_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="238" parent="171" name="FK_USERS_TOPICS_USER_ID_INDEX_D">
+    <index id="229" parent="170" name="FK_USERS_TOPICS_USER_ID_INDEX_D">
       <ColNames>USER_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="239" parent="171" name="FK_USERS_TOPICS_TOPIC_ID_INDEX_D">
+    <index id="230" parent="170" name="FK_USERS_TOPICS_TOPIC_ID_INDEX_D">
       <ColNames>TOPIC_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="240" parent="171" name="CONSTRAINT_D">
+    <key id="231" parent="170" name="CONSTRAINT_D">
       <ColNames>USER_ID
 TOPIC_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
