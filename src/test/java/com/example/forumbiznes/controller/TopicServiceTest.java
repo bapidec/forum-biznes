@@ -1,32 +1,22 @@
 package com.example.forumbiznes.controller;
 
+import com.example.forumbiznes.Model.Post;
 import com.example.forumbiznes.Model.Topic;
 import com.example.forumbiznes.Model.User;
 import com.example.forumbiznes.service.TopicService;
-import com.example.forumbiznes.controller.TopicController;
-import com.example.forumbiznes.service.TopicServiceImpl;
-import jakarta.inject.Inject;
+import com.example.forumbiznes.service.TopicServiceTestImpl;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
-
-public class TopicControllerTest {
+public class TopicServiceTest {
 
     private TopicService topicService;
 
-    private TopicController topicController;
-
     @Before
     public void setUp() {
-        topicService = new TopicServiceImpl();
-        topicController = new TopicController();
+        topicService = new TopicServiceTestImpl();
         topicService.save(new Topic("Topic 1"));
         topicService.save(new Topic("Topic 2"));
     }
@@ -50,6 +40,35 @@ public class TopicControllerTest {
         assert topics.size() == 2;
 
     }
+
+    @Test
+    public void testAddPost() {
+        Topic t = new Topic("Topic with posts");
+        User u = new User();
+
+        assert t.getPosts().size() == 0;
+
+        topicService.addPost(t, u, new Post());
+
+        assert t.getPosts().size() == 1;
+    }
+
+    @Test
+    public void testFollowAndUnfollow() {
+        Topic t = new Topic("Followed topic");
+
+        assert t.getFollowers().size() == 0;
+
+        User u = new User();
+
+        topicService.addFollower(t, u);
+        assert t.getFollowers().size() == 1;
+
+        topicService.unfollow(t, u);
+        assert t.getFollowers().size() == 0;
+    }
+
+
 
     // Add more test methods for other functionalities of the TopicController class
 

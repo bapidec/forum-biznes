@@ -10,10 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c640247-78f3-4936-acd2-0d19ecef8829" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/interceptors/LoggingInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/forumbiznes/service/TopicServiceTestImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/post.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/post.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/mod/post.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/mod/post.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/user/post.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user/post.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/forumbiznes/Dao/TopicDaoTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/forumbiznes/Dao/UserDaoTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/forumbiznes/controller/TopicControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/forumbiznes/controller/TopicServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +59,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "full.screen.before.presentation.mode": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "logi",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/BURAK/Documents/forum-biznes/src/main/webapp/admin",
     "node.js.detected.package.eslint": "true",
@@ -86,7 +88,7 @@
       <recent name="C:\Users\BURAK\Documents\forum-biznes\src\main\webapp\user" />
     </key>
   </component>
-  <component name="RunManager" selected="GlassFish Server.GlassFish 6.2023.4">
+  <component name="RunManager" selected="JUnit.TopicServiceTest.testFollowAndUnfollow">
     <configuration name="GlassFish 6.2023.4" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 6.2023.4" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -159,38 +161,70 @@
         </option>
       </method>
     </configuration>
-    <configuration name="TopicControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TopicServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="forum-biznes" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.forumbiznes.controller.TopicControllerTest" />
+          <option name="PATTERN" value="com.example.forumbiznes.controller.TopicServiceTest" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.forumbiznes.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.forumbiznes.controller.TopicControllerTest" />
+      <option name="MAIN_CLASS_NAME" value="com.example.forumbiznes.controller.TopicServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TopicControllerTest.testDeleteTopic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TopicServiceTest.testAddAndDeletePost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="forum-biznes" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.forumbiznes.controller.TopicControllerTest" />
+          <option name="PATTERN" value="com.example.forumbiznes.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.forumbiznes.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.forumbiznes.controller.TopicControllerTest" />
+      <option name="MAIN_CLASS_NAME" value="com.example.forumbiznes.controller.TopicServiceTest" />
+      <option name="METHOD_NAME" value="testAddAndDeletePost" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TopicServiceTest.testDeleteTopic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="forum-biznes" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.forumbiznes.controller.TopicServiceTest" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.forumbiznes.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.forumbiznes.controller.TopicServiceTest" />
       <option name="METHOD_NAME" value="testDeleteTopic" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TopicControllerTest.testGetTopics" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TopicServiceTest.testFollowAndUnfollow" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="forum-biznes" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.forumbiznes.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.forumbiznes.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.forumbiznes.controller.TopicServiceTest" />
+      <option name="METHOD_NAME" value="testFollowAndUnfollow" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TopicServiceTest.testGetTopics" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="forum-biznes" />
       <extension name="coverage">
         <pattern>
@@ -199,7 +233,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.forumbiznes.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.forumbiznes.controller.TopicControllerTest" />
+      <option name="MAIN_CLASS_NAME" value="com.example.forumbiznes.controller.TopicServiceTest" />
       <option name="METHOD_NAME" value="testGetTopics" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -208,9 +242,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TopicControllerTest.testGetTopics" />
-        <item itemvalue="JUnit.TopicControllerTest" />
-        <item itemvalue="JUnit.TopicControllerTest.testDeleteTopic" />
+        <item itemvalue="JUnit.TopicServiceTest.testFollowAndUnfollow" />
+        <item itemvalue="JUnit.TopicServiceTest.testAddAndDeletePost" />
+        <item itemvalue="JUnit.TopicServiceTest" />
+        <item itemvalue="JUnit.TopicServiceTest.testGetTopics" />
+        <item itemvalue="JUnit.TopicServiceTest.testDeleteTopic" />
       </list>
     </recent_temporary>
   </component>
