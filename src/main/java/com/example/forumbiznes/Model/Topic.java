@@ -18,6 +18,9 @@ import java.util.Map;
 @Table(name="Topics")
 public class Topic extends AbstractModel{
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name="users_topics",
+            joinColumns=@JoinColumn(name="topic_id"),
+            inverseJoinColumns=@JoinColumn(name="user_id"))
     private List<User> followers = new LinkedList<>();
     @Column(name = "title")
     private String title;
