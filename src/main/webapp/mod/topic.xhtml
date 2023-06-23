@@ -20,7 +20,7 @@
 
 
 
-        <p:dataTable id="postList" value="#{topicController.currentTopic.posts}" var="post" rowKey="#{topic.uid}"
+        <p:dataTable id="postList" value="#{topicController.currentTopic.posts}" var="post" rowKey="#{post.uid}"
                      emptyMessage="Brak postów w kategorii" paginator="true" paginatorAlwaysVisible="false"
                      paginatorPosition="bottom"
                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
@@ -35,6 +35,11 @@
             </f:facet>
             <p:column headerText="Tytuł">
                 <p:commandLink title="#{post.title}" action="#{postController.goToPostPage(post)}" value="#{post.title}" />
+            </p:column>
+            <p:column headerText="Usuń" width="80" style="text-align: center;">
+                <p:commandButton icon="pi pi-trash" title="Usuń" action="#{postController.onRemovePost(post)}"
+                                 process="@this" update=":mainForm:postList">
+                </p:commandButton>
             </p:column>
         </p:dataTable>
 

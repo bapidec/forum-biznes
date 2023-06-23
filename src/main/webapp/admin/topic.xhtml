@@ -36,6 +36,11 @@
             <p:column headerText="Tytuł">
                 <p:commandLink title="#{post.title}" action="#{postController.goToPostPage(post)}" value="#{post.title}" />
             </p:column>
+            <p:column headerText="Usuń" width="80" style="text-align: center;">
+                <p:commandButton icon="pi pi-trash" title="Usuń" action="#{postController.onRemovePost(post)}"
+                                 process="@this" update=":mainForm:postList">
+                </p:commandButton>
+            </p:column>
         </p:dataTable>
 
 
